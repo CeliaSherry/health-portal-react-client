@@ -6,13 +6,23 @@ class SearchDoctor extends Component {
         super();
         this.state = {
             keyword: '',
-            doctors: []
+            // doctors: [
+            //    {
+            //        data: [
+            //            {
+            //                profile: [{
+            //                    first_name: ''
+            //                }]
+            //            }
+            //        ]
+            //    }
+            // ]
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
         fetch('https://api.betterdoctor.com/2016-03-01/doctors?location=ma-somerville&skip=0&limit=10&user_key=79e466f7a9238673f5bc113d0cab3177&practice_uid=7fe4e3005427fe2ae050fe42c14482cd')
             .then(res => res.json())
             .then(json => {
@@ -21,7 +31,7 @@ class SearchDoctor extends Component {
                 })
             })
             .then(() => console.log(this.state.doctors.data[0].profile));
-    }
+    }*/
 
     handleChange(event) {
         this.setState(
@@ -33,30 +43,31 @@ class SearchDoctor extends Component {
 
     handleSubmit(event) {
         var api_key = '79e466f7a9238673f5bc113d0cab3177';
-        var location = 'ma-somerville'
+        //var location = 'ma-somerville'
 
         var url = 'https://api.betterdoctor.com/2016-03-01/doctors?location=';
-        //url += this.state.keyword;
-        url += location
+        url += this.state.keyword;
+       // url += location
         url += '&skip=0&limit=10&user_key='
         url += api_key
-        console.log(url)
+
         // url += '&s=' + this.state.keyword;
         fetch(url)
             .then(res => res.json())
             .then(json => {
-                this.setState({doctors: json.search});
+                this.setState({doctors: json});
             })
     }
 
     renderDoctors() {
-   /*     var items;
+        //console.log(this.state.doctors.data)
+        var items;
         if(this.state.doctors) {
-            items = this.state.doctors
+            items = this.state.doctors.data
                 .map(function(item, index) {
                     return <li className="list-group-item"
                                key={index}>
-                        {item.meta}
+                        {item.profile.first_name}
                     </li>
                 });
         }
@@ -64,7 +75,7 @@ class SearchDoctor extends Component {
             <ul className="list-group">
                 {items}
             </ul>
-        )*/
+        )
     }
 
 
