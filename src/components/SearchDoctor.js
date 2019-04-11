@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import SearchResults from "./SearchResults";
 
 class SearchDoctor extends Component {
 
@@ -6,32 +7,10 @@ class SearchDoctor extends Component {
         super();
         this.state = {
             keyword: '',
-            // doctors: [
-            //    {
-            //        data: [
-            //            {
-            //                profile: [{
-            //                    first_name: ''
-            //                }]
-            //            }
-            //        ]
-            //    }
-            // ]
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    /*componentDidMount() {
-        fetch('https://api.betterdoctor.com/2016-03-01/doctors?location=ma-somerville&skip=0&limit=10&user_key=79e466f7a9238673f5bc113d0cab3177&practice_uid=7fe4e3005427fe2ae050fe42c14482cd')
-            .then(res => res.json())
-            .then(json => {
-                this.setState({
-                    doctors: json
-                })
-            })
-            .then(() => console.log(this.state.doctors.data[0].profile));
-    }*/
 
     handleChange(event) {
         this.setState(
@@ -51,7 +30,6 @@ class SearchDoctor extends Component {
         url += '&skip=0&limit=10&user_key='
         url += api_key
 
-        // url += '&s=' + this.state.keyword;
         fetch(url)
             .then(res => res.json())
             .then(json => {
@@ -60,7 +38,6 @@ class SearchDoctor extends Component {
     }
 
     renderDoctors() {
-        //console.log(this.state.doctors.data)
         var items;
         if(this.state.doctors) {
             items = this.state.doctors.data
@@ -94,6 +71,7 @@ class SearchDoctor extends Component {
                             <button onClick={this.handleSubmit}>Search</button>
                     </div>
                 </div>
+                <SearchResults doctors={this.state.doctors}/>
                 <h2>
                     Results
                 </h2>
