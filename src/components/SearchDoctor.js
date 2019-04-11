@@ -37,23 +37,7 @@ class SearchDoctor extends Component {
             })
     }
 
-    renderDoctors() {
-        var items;
-        if(this.state.doctors) {
-            items = this.state.doctors.data
-                .map(function(item, index) {
-                    return <li className="list-group-item"
-                               key={index}>
-                        {item.profile.first_name}
-                    </li>
-                });
-        }
-        return (
-            <ul className="list-group">
-                {items}
-            </ul>
-        )
-    }
+
 
 
     render() {
@@ -72,10 +56,6 @@ class SearchDoctor extends Component {
                     </div>
                 </div>
                 <SearchResults doctors={this.state.doctors}/>
-                <h2>
-                    Results
-                </h2>
-                {this.renderDoctors()}
             </div>
         )
     }
