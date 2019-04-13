@@ -13,11 +13,15 @@ class ResultsPage extends Component {
             this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount = () =>
+        this.handleSubmit();
+
         handleSubmit(event) {
             var api_key = '79e466f7a9238673f5bc113d0cab3177';
             var url = 'https://api.betterdoctor.com/2016-03-01/doctors?location=';
-            var location = this.props.match.params.criteria
-            url += location
+            var newLocation = this.props.match.params.criteria;
+            this.location = newLocation
+            url += newLocation
             // url += location
             url += '&skip=0&limit=10&user_key='
             url += api_key
@@ -25,29 +29,40 @@ class ResultsPage extends Component {
             fetch(url)
                 .then(res => res.json())
                 .then(json => {
-                    this.setState({doctors: json});
+                    this.setState({doctors: json, location: newLocation});
                 })
         }
 
     renderDoctors() {
         var items;
-        this.handleSubmit();
+       /* this.handleSubmit();*/
         if (this.state.doctors) {
-            items = this.state.doctors.data
-                .map(function (item, index) {
-                    return <tr key={index}>
-                        <td>
-                            <i className="fa fa-stethoscope">&nbsp;</i>
-                            {item.profile.first_name} {item.profile.last_name}
-                        </td>
-                        <td>
-                            {item.profile.title}
-                        </td>
-                        <td>
-                            {item.specialties[0].name}
-                        </td>
-                    </tr>
-                });
+            if(this.state.location) {
+                var newLoc = this.state.location
+                items = this.state.doctors.data
+                    .map(function (item, index) {
+                        return <tr key={index}>
+                            <td>
+                                <i className="fa fa-stethoscope">&nbsp;</i>
+                                {item.profile.first_name} {item.profile.last_name}
+                            </td>
+                            <td>
+                                {item.profile.title}
+                            </td>
+                            <td>
+                                {item.specialties[0].name}
+                            </td>
+                            <td>
+                                <Link to={`/details/${newLoc}`}>
+                                {/*<Link to={'/details'}>*/}
+                                    <button className="btn btn-success pull-right" type="button">
+                                        Details
+                                    </button>
+                                </Link>
+                            </td>
+                        </tr>
+                    });
+            }
         }
         return (
             <div className="table-responsive">
@@ -57,6 +72,7 @@ class ResultsPage extends Component {
                         <th>Name</th>
                         <th>Title</th>
                         <th>Specialty</th>
+                        <th> </th>
                     </tr>
                     </thead>
                     <tbody>

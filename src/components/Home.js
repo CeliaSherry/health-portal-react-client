@@ -7,6 +7,7 @@ import DoctorAPI from "./DoctorAPI";
 import Login from "../containers/Login";
 import ResultsPage from "./ResultsPage";
 import SearchDoctor from "./SearchDoctor";
+import DetailsPage from "./DetailsPage";
 
 class Home extends Component {
     constructor(props) {
@@ -46,6 +47,8 @@ class Home extends Component {
                                }/>
                         <Route path='/search/:criteria' exact
                                component={ResultsPage} />
+                        <Route path='/details/:location/practice/:practiceId' exact
+                               component={DetailsPage} />
                     </div>
                 </Router>
             </div>
