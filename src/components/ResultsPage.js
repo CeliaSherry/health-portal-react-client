@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import TopNav from "./DoctorAPI";
+import {Link} from "react-router-dom";
 
 class ResultsPage extends Component {
 
@@ -67,7 +69,21 @@ class ResultsPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container-fluid">
+                <div> &nbsp;
+                </div>
+                <div className="form-group row">
+                    <label className="col-sm-0"></label>
+                    <div className="col-sm-10">
+                        <Link to={`/search`}>
+                            <button
+                                type="button"
+                                className="btn btn-primary">
+                                Back to Search
+                            </button>
+                        </Link>
+                    </div>
+                </div>
                 <h2>
                     Results
                 </h2>

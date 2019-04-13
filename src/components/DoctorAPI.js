@@ -5,7 +5,7 @@ import TopNav from "./TopNav";
 class DoctorAPI extends Component {
     render() {
         return (
-            <div>
+            <div className="container-fluid">
                 <TopNav/>
                 <h1>
                     Test

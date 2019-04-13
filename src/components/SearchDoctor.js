@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import SearchResults from "./SearchResults";
 import {Link} from "react-router-dom";
 
 class SearchDoctor extends Component {
@@ -12,7 +11,6 @@ class SearchDoctor extends Component {
         };
         this.handleStateChange = this.handleStateChange.bind(this);
         this.handleCityChange = this.handleCityChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleStateChange(event) {
@@ -29,24 +27,6 @@ class SearchDoctor extends Component {
                 usCity: event.target.value
             }
         )
-    }
-
-    handleSubmit(event) {
-        var api_key = '79e466f7a9238673f5bc113d0cab3177';
-        var url = 'https://api.betterdoctor.com/2016-03-01/doctors?location=';
-        var city = this.state.usCity.toLowerCase()
-        url += this.state.usState;
-        url += '-';
-        url += city
-        // url += location
-        url += '&skip=0&limit=10&user_key='
-        url += api_key
-
-        fetch(url)
-            .then(res => res.json())
-            .then(json => {
-                this.setState({doctors: json});
-            })
     }
 
 
@@ -79,6 +59,7 @@ class SearchDoctor extends Component {
                             <select value={this.state.usState}
                                     onChange={this.handleStateChange}
                                     id="usState">
+                                <option value="none">State</option>
                                 <option value="al">Alabama</option>
                                 <option value="ak">Alaska</option>
                                 <option value="az">Arizona</option>
@@ -138,7 +119,6 @@ class SearchDoctor extends Component {
                         <div className="col-sm-10">
                             <Link to={`/search/${this.state.usState}-${this.state.usCity.toLowerCase()}`}>
                             <button
-                                onClick={this.handleSubmit}
                                 type="button"
                                 className="btn btn-primary">
                                 Search
@@ -146,7 +126,6 @@ class SearchDoctor extends Component {
                             </Link>
                         </div>
                     </div>
-                <SearchResults doctors={this.state.doctors}/>
                 </div>
             </div>
         )
