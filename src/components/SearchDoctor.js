@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import SearchResults from "./SearchResults";
+import {Link} from "react-router-dom";
 
 class SearchDoctor extends Component {
 
@@ -135,14 +136,14 @@ class SearchDoctor extends Component {
                     <div className="form-group row">
                         <label className="col-sm-2"></label>
                         <div className="col-sm-10">
+                            <Link to={`/search/${this.state.usState}-${this.state.usCity.toLowerCase()}`}>
                             <button
                                 onClick={this.handleSubmit}
-                                to={'/search/criteria'}
                                 type="button"
                                 className="btn btn-primary">
                                 Search
                             </button>
-
+                            </Link>
                         </div>
                     </div>
                 <SearchResults doctors={this.state.doctors}/>
