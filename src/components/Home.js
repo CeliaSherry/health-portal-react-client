@@ -4,6 +4,8 @@ import ArticleService from "../services/ArticleService";
 import TopNav from "./TopNav";
 import './Home.css';
 import DoctorAPI from "./DoctorAPI";
+import Login from "../containers/Login";
+import ResultsPage from "./ResultsPage";
 
 class Home extends Component {
     constructor(props) {
@@ -37,10 +39,12 @@ class Home extends Component {
                                render={() =>
                                    <TopNav/>
                                }/>
-                        <Route path='/search'
+                        <Route path='/search' exact
                                render={() =>
                                <DoctorAPI/>
                                }/>
+                        <Route path='/search/:criteria' exact
+                               component={ResultsPage} />
                     </div>
                 </Router>
             </div>
