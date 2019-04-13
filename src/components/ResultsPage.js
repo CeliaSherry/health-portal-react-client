@@ -53,7 +53,7 @@ class ResultsPage extends Component {
                                 {item.specialties[0].name}
                             </td>
                             <td>
-                                <Link to={`/details/${newLoc}`}>
+                                <Link to={`/details/${newLoc}/practice/${item.practices[0].uid}`}>
                                 {/*<Link to={'/details'}>*/}
                                     <button className="btn btn-success pull-right" type="button">
                                         Details
