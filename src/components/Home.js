@@ -6,6 +6,7 @@ import './Home.css';
 import DoctorAPI from "./DoctorAPI";
 import Login from "../containers/Login";
 import ResultsPage from "./ResultsPage";
+import SearchDoctor from "./SearchDoctor";
 
 class Home extends Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class Home extends Component {
                                }/>
                         <Route path='/search' exact
                                render={() =>
-                               <DoctorAPI/>
+                               <SearchDoctor/>
                                }/>
                         <Route path='/search/:criteria' exact
                                component={ResultsPage} />

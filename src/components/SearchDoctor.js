@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import TopNav from "./TopNav";
 
 class SearchDoctor extends Component {
 
@@ -34,9 +35,10 @@ class SearchDoctor extends Component {
         return (
             <div>
                 <div className="container-fluid">
-                <h1>
-                    Search For Doctors
-                </h1>
+                    <TopNav/>
+                    <h1>
+                        Search For Doctors
+                    </h1>
                     <div className="form-group row">
                         <label className="col-sm-2"
                                htmlFor="city">
@@ -118,11 +120,11 @@ class SearchDoctor extends Component {
                         <label className="col-sm-2"></label>
                         <div className="col-sm-10">
                             <Link to={`/search/${this.state.usState}-${this.state.usCity.toLowerCase()}`}>
-                            <button
-                                type="button"
-                                className="btn btn-primary">
-                                Search
-                            </button>
+                                <button
+                                    type="button"
+                                    className="btn btn-primary">
+                                    Search
+                                </button>
                             </Link>
                         </div>
                     </div>
@@ -131,6 +133,7 @@ class SearchDoctor extends Component {
         )
     }
 }
+
 export default SearchDoctor;
 
 

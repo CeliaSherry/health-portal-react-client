@@ -8,7 +8,7 @@ class DoctorAPI extends Component {
             <div className="container-fluid">
                 <TopNav/>
                 <h1>
-                    Test
+                    Test 3
                 </h1>
                 <SearchDoctor/>
             </div>
