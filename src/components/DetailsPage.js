@@ -7,7 +7,8 @@ class Details extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            location: ''
+            location: '',
+            practiceId: ''
         };
         this.renderData = this.renderData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +33,8 @@ class Details extends Component {
         fetch(url)
             .then(res => res.json())
             .then(json => {
-                this.setState({doctors: json, location: this.props.match.params.location});
+                this.setState({doctors: json, location: this.props.match.params.location,
+                practiceId: this.props.match.params.practiceId});
             })
     }
 
@@ -45,7 +47,7 @@ class Details extends Component {
                     return <tr key={index}>
                         <td>
                             <i className="fa fa-stethoscope">&nbsp;</i>
-                            {item.profile.first_name} {item.profile.last_name}
+                            {item.profile.first_name} {item.profile.last_name} ADD LINK TO PROFILE
                         </td>
                     </tr>
                 });
@@ -57,7 +59,7 @@ class Details extends Component {
                         {this.state.doctors.data[0].practices[0].visit_address.street}
                     </h1>
                     <h1>
-                        {this.state.doctors.data[0].practices[0].visit_address.city}, {this.state.doctors.data[0].practices[0].visit_address.state}
+                        {this.state.doctors.data[0].practices[0].visit_address.city}, {this.state.doctors.data[0].practices[0].visit_address.state} {this.state.doctors.data[0].practices[0].visit_address.zip}
                     </h1>
                     <h3>
                         {this.state.doctors.data[0].specialties[0].name}: {this.state.doctors.data[0].specialties[0].description}
@@ -106,5 +108,8 @@ class Details extends Component {
     }
 
 }
+
+// find articles for doctors in that practice -> find practice of provider
+// add table that maps provider to practice
 
 export default Details;

@@ -3,11 +3,11 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import ArticleService from "../services/ArticleService";
 import TopNav from "./TopNav";
 import './Home.css';
-import DoctorAPI from "./DoctorAPI";
 import Login from "../containers/Login";
 import ResultsPage from "./ResultsPage";
 import SearchDoctor from "./SearchDoctor";
 import DetailsPage from "./DetailsPage";
+import LandingPage from "./LandingPage";
 
 class Home extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ class Home extends Component {
                     <div>
                         <Route path='/' exact
                                render={() =>
-                                   <TopNav/>
+                                   <LandingPage/>
                                }/>
                         <Route path='/search' exact
                                render={() =>

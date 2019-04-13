@@ -1,20 +1,17 @@
-import React, {Component} from 'react';
-import SearchDoctor from "./SearchDoctor";
+import React from 'react'
 import TopNav from "./TopNav";
 
-class DoctorAPI extends Component {
+class LandingPage extends React.Component {
     render() {
         return (
             <div className="container-fluid">
                 <TopNav/>
                 <h1>
-                    Test 3
+                    Landing Page
                 </h1>
-                <SearchDoctor/>
             </div>
         )
     }
 }
 
-export default DoctorAPI;
-
+export default LandingPage;
