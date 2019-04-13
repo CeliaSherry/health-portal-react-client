@@ -8,7 +8,7 @@ import DoctorAPI from './components/DoctorAPI'
 ReactDOM.render(
     <div className="container-fluid">
         {/*<Home/>*/}
-        <DoctorAPI/>
+        <Home/>
     </div>,
     document.getElementById("root")
 )

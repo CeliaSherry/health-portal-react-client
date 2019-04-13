@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import ArticleService from "../services/ArticleService";
 import TopNav from "./TopNav";
 import './Home.css';
+import DoctorAPI from "./DoctorAPI";
 
 class Home extends Component {
     constructor(props) {
@@ -29,15 +30,46 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
-                <TopNav/>
             <div className="container-fluid">
-                <h1>
-                    Home Page
-                </h1>
-            </div>
+                <Router>
+                    <div>
+                        <Route path='/' exact
+                               render={() =>
+                                   <TopNav/>
+                               }/>
+                        <Route path='/search'
+                               render={() =>
+                               <DoctorAPI/>
+                               }/>
+                    </div>
+                </Router>
             </div>
         )
     }
 }
 export default Home;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

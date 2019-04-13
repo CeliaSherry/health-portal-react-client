@@ -13,13 +13,18 @@ const TopNav = ({}) =>
                 </a>
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li className="nav-item active">
-                        <a className="nav-link" href="#">
+                        <a className="nav-link" href="/">
                             Home
                         </a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="#">
                             Profile
+                        </a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="#">
+                            Search
                         </a>
                     </li>
                 </ul>
