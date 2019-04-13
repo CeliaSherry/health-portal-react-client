@@ -8,19 +8,38 @@ class SearchResults extends Component {
 
     renderDoctors() {
         var items;
-        if(this.props.doctors) {
+        if (this.props.doctors) {
             items = this.props.doctors.data
-                .map(function(item, index) {
-                    return <li className="list-group-item"
-                               key={index}>
-                        {item.profile.first_name}
-                    </li>
+                .map(function (item, index) {
+                    return <tr key={index}>
+                        <td>
+                            <i className="fa fa-stethoscope">&nbsp;</i>
+                            {item.profile.first_name} {item.profile.last_name}
+                        </td>
+                        <td>
+                            {item.profile.title}
+                        </td>
+                        <td>
+                            {item.specialties[0].name}
+                        </td>
+                    </tr>
                 });
         }
         return (
-            <ul className="list-group">
-                {items}
-            </ul>
+            <div className="table-responsive">
+                <table className="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Specialty</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {items}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 

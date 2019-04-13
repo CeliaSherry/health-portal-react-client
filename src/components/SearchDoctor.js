@@ -51,10 +51,10 @@ class SearchDoctor extends Component {
     render() {
         return (
             <div>
-                <h1>
-                    Test 2
-                </h1>
                 <div className="container-fluid">
+                <h1>
+                    Search For Doctors
+                </h1>
                     <div className="form-group row">
                         <label className="col-sm-2"
                                htmlFor="city">
@@ -63,7 +63,7 @@ class SearchDoctor extends Component {
                         <div className="col-sm-10">
                             <input className="form-control"
                                    id="city"
-                                   placeholder="city"
+                                   placeholder="City"
                                    value={this.state.usCity}
                                    onChange={this.handleCityChange}/>
                         </div>
@@ -143,19 +143,14 @@ class SearchDoctor extends Component {
 
                         </div>
                     </div>
-                </div>
                 <SearchResults doctors={this.state.doctors}/>
+                </div>
             </div>
         )
     }
-
-
 }
-
 export default SearchDoctor;
 
-
-//div className="input-group-append">
 
 
 
