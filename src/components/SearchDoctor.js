@@ -6,26 +6,36 @@ class SearchDoctor extends Component {
     constructor() {
         super();
         this.state = {
-            keyword: '',
+            usState: '',
+            usCity: ''
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleStateChange = this.handleStateChange.bind(this);
+        this.handleCityChange = this.handleCityChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
+    handleStateChange(event) {
         this.setState(
             {
-                keyword: event.target.value
+                usState: event.target.value
             }
         );
     }
 
+    handleCityChange(event) {
+        this.setState (
+            {
+                usCity: event.target.value
+            }
+        )
+    }
+
     handleSubmit(event) {
         var api_key = '79e466f7a9238673f5bc113d0cab3177';
-        //var location = 'ma-somerville'
-
         var url = 'https://api.betterdoctor.com/2016-03-01/doctors?location=';
-        url += this.state.keyword;
+        url += this.state.usState;
+        url += '-';
+        url += this.state.usCity;
        // url += location
         url += '&skip=0&limit=10&user_key='
         url += api_key
@@ -38,8 +48,6 @@ class SearchDoctor extends Component {
     }
 
 
-
-
     render() {
         return (
             <div>
@@ -48,9 +56,13 @@ class SearchDoctor extends Component {
                 </h1>
                 <div className="input-group">
                     <input className="form-control"
-                           placeholder="keyword"
-                           value={this.state.keyword}
-                           onChange={this.handleChange}/>
+                           placeholder="state"
+                           value={this.state.usState}
+                           onChange={this.handleStateChange}/>
+                    <input className="form-control"
+                           placeholder="city"
+                           value={this.state.usCity}
+                           onChange={this.handleCityChange}/>
                     <div className="input-group-append">
                             <button onClick={this.handleSubmit}>Search</button>
                     </div>
