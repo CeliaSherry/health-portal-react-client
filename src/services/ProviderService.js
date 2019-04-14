@@ -22,6 +22,10 @@ class ProviderService {
         fetch(API_URL + "providers/user/" + userId)
             .then(response => response.json());
 
+    findProvidersbyPractice = (practiceId) =>
+        fetch(API_URL + "practice/" + practiceId + "/provider")
+            .then(response => response.json())
+
     removeProvider = (userId) =>
         fetch(API_URL + "providers/user/" + userId, {
             method: 'delete',
