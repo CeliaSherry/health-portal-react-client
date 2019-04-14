@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import TopNav from "./TopNav";
 import {Link} from "react-router-dom";
-import ArticleService from "../services/ArticleService";
 import PracticeService from "../services/PracticeService";
 
 class Details extends Component {
@@ -9,7 +8,6 @@ class Details extends Component {
     constructor(props) {
         super(props);
         this.practiceService = PracticeService.getInstance();
-        this.articleService = ArticleService.getInstance();
         this.state = {
             location: '',
             practiceId: ''
@@ -51,7 +49,6 @@ class Details extends Component {
                     practice: practice
                 })
             )
-            .then(() => console.log(this.state.practice.providers))
 
     renderData() {
         var items;

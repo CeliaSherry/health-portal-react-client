@@ -8,6 +8,8 @@ import ResultsPage from "./ResultsPage";
 import SearchDoctor from "./SearchDoctor";
 import DetailsPage from "./DetailsPage";
 import LandingPage from "./LandingPage";
+import UserProfile from "../containers/UserProfile";
+import PersonalProfile from "../containers/PersonalProfile";
 
 class Home extends Component {
     constructor(props) {
@@ -49,6 +51,10 @@ class Home extends Component {
                                component={ResultsPage} />
                         <Route path='/details/:location/practice/:practiceId' exact
                                component={DetailsPage} />
+                        <Route path='/profile/:profileId' exact
+                               component={UserProfile} />
+                        <Route path='/profile' exact
+                               component={PersonalProfile} />
                     </div>
                 </Router>
             </div>
