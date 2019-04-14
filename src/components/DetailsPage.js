@@ -1,17 +1,22 @@
 import React, {Component} from 'react';
 import TopNav from "./TopNav";
 import {Link} from "react-router-dom";
+import ArticleService from "../services/ArticleService";
+import PracticeService from "../services/PracticeService";
 
 class Details extends Component {
 
     constructor(props) {
         super(props);
+        this.practiceService = PracticeService.getInstance();
+        this.articleService = ArticleService.getInstance();
         this.state = {
             location: '',
             practiceId: ''
         };
         this.renderData = this.renderData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+       // this.findProviders = this.findProviders(this);
     }
 
     componentDidMount = () =>
@@ -37,6 +42,14 @@ class Details extends Component {
                 practiceId: this.props.match.params.practiceId});
             })
     }
+
+    findProviders = (pUid) =>
+        this.practiceService.findPracticeByPracticeId(pUid)
+            .then(practice => console.log(practice)
+              //  this.setState ({
+              //      practice: practice
+              //  })
+            )
 
     renderData() {
         var items;
@@ -101,6 +114,9 @@ class Details extends Component {
                             Back to Results
                         </button>
                     </Link>
+                    <button className="btn btn-success" onClick={() => this.findProviders(this.state.practiceId)}>
+                        find practice
+                    </button>
                 </h2>
                 {this.renderData()}
             </div>
