@@ -14,7 +14,7 @@ class Details extends Component {
         };
         this.renderData = this.renderData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-       // this.findProviders = this.findProviders(this);
+        // this.findProviders = this.findProviders(this);
     }
 
     componentDidMount = () =>
@@ -36,8 +36,10 @@ class Details extends Component {
         fetch(url)
             .then(res => res.json())
             .then(json => {
-                this.setState({doctors: json, location: this.props.match.params.location,
-                practiceId: this.props.match.params.practiceId});
+                this.setState({
+                    doctors: json, location: this.props.match.params.location,
+                    practiceId: this.props.match.params.practiceId
+                });
             })
             .then(() => this.findProviders(this.state.practiceId))
     }
@@ -45,7 +47,7 @@ class Details extends Component {
     findProviders = (pUid) =>
         this.practiceService.findPracticeByPracticeId(pUid)
             .then(practice =>
-                this.setState ({
+                this.setState({
                     practice: practice
                 })
             )
@@ -58,8 +60,8 @@ class Details extends Component {
                 .map(function (item, index) {
                     return <tr key={index}>
                         <td>
-                            <i className="fa fa-stethoscope">&nbsp;</i>
-                            {item.profile.first_name} {item.profile.last_name} ADD LINK TO PROFILE
+                                <i className="fa fa-stethoscope">&nbsp;</i>
+                                {item.profile.first_name} {item.profile.last_name}
                         </td>
                     </tr>
                 });
@@ -67,11 +69,13 @@ class Details extends Component {
         if (this.state.practice) {
             articles = this.state.practice.providers
                 .map(function (item, index) {
-                    return item.authoredArticles.map(function (item2, index2){
+                    return item.authoredArticles.map(function (item2, index2) {
                         return <tr key={index2}>
                             <td>
+                                <Link to={`/article/${item2.id}`}>
                                 <i className="fa fa-file">&nbsp;</i>
-                            {item2.title}
+                                {item2.title}
+                                </Link>
                             </td>
                         </tr>
                     })
