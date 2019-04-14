@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TopNav from "./TopNav";
 import {Link} from "react-router-dom";
 import PracticeService from "../services/PracticeService";
+import './DetailsPage.css';
 
 class Details extends Component {
 
