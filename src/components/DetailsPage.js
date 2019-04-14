@@ -70,10 +70,13 @@ class Details extends Component {
         if (this.state.practice) {
             articles = this.state.practice.providers
                 .map(function (item, index) {
-                    return item.authoredArticles.map(function (item2, index){
-                        return <div>
+                    return item.authoredArticles.map(function (item2, index2){
+                        return <tr key={index2}>
+                            <td>
+                                <i className="fa fa-file">&nbsp;</i>
                             {item2.title}
-                        </div>
+                            </td>
+                        </tr>
                     })
                 });
         }
@@ -89,9 +92,6 @@ class Details extends Component {
                     <h3>
                         {this.state.doctors.data[0].specialties[0].name}: {this.state.doctors.data[0].specialties[0].description}
                     </h3>
-                    <h1>
-                        {this.state.practice.title}
-                    </h1>
                     <div>&nbsp;</div>
                     <div className="table-responsive">
                         <table className="table table-hover">
@@ -104,9 +104,16 @@ class Details extends Component {
                             {items}
                             </tbody>
                         </table>
-                        <div>
+                        <table className="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Articles</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             {articles}
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             )
