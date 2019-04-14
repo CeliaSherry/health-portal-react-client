@@ -20,7 +20,7 @@ class Details extends Component {
     }
 
     componentDidMount = () =>
-        this.handleSubmit();
+        this.handleSubmit()
 
 
     handleSubmit(event) {
@@ -41,19 +41,21 @@ class Details extends Component {
                 this.setState({doctors: json, location: this.props.match.params.location,
                 practiceId: this.props.match.params.practiceId});
             })
+            .then(() => this.findProviders(this.state.practiceId))
     }
 
     findProviders = (pUid) =>
         this.practiceService.findPracticeByPracticeId(pUid)
-            .then(practice => console.log(practice)
-              //  this.setState ({
-              //      practice: practice
-              //  })
+            .then(practice =>
+                this.setState ({
+                    practice: practice
+                })
             )
+            .then(() => console.log(this.state.practice.providers))
 
     renderData() {
         var items;
-        var details;
+        var articles;
         if (this.state.doctors) {
             items = this.state.doctors.data
                 .map(function (item, index) {
@@ -65,7 +67,17 @@ class Details extends Component {
                     </tr>
                 });
         }
-        if (this.state.doctors) {
+        if (this.state.practice) {
+            articles = this.state.practice.providers
+                .map(function (item, index) {
+                    return item.authoredArticles.map(function (item2, index){
+                        return <div>
+                            {item2.title}
+                        </div>
+                    })
+                });
+        }
+        if (this.state.practice) {
             return (
                 <div>
                     <h1>
@@ -77,6 +89,9 @@ class Details extends Component {
                     <h3>
                         {this.state.doctors.data[0].specialties[0].name}: {this.state.doctors.data[0].specialties[0].description}
                     </h3>
+                    <h1>
+                        {this.state.practice.title}
+                    </h1>
                     <div>&nbsp;</div>
                     <div className="table-responsive">
                         <table className="table table-hover">
@@ -89,6 +104,9 @@ class Details extends Component {
                             {items}
                             </tbody>
                         </table>
+                        <div>
+                            {articles}
+                        </div>
                     </div>
                 </div>
             )
