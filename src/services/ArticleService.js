@@ -57,7 +57,7 @@ class ArticleService {
             response.json());
 
     findFavoritedCustomers = (articleId) =>
-        fetch(API_URL + "articles/" + articleId + "/cutomer")
+        fetch(API_URL + "articles/" + articleId + "/customer")
             .then(response => response.json());
 
 

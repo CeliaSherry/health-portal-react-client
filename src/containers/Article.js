@@ -24,10 +24,30 @@ class Article extends React.Component {
                 this.setState({
                     article: article
                 }))
+            .then(() => this.articleService.findFavoritedCustomers(aid)
+                .then(customers =>
+                    this.setState({
+                        customers: customers
+                    })))
+            .then(() => console.log(this.state.customers))
     }
 
     renderData() {
-        if (this.state.article) {
+        var items;
+        if (this.state.customers) {
+            items = this.state.customers
+                .map(function (item, index) {
+                    return <tr key={index}>
+                        <Link to={`/profile/${item.id}`}>
+                            <td>
+                                <i className="fa fa-thumbs-up">&nbsp;</i>
+                                {item.username} in {item.city}, {item.state}
+                            </td>
+                        </Link>
+                    </tr>
+                });
+        }
+        if (this.state.customers) {
             return (
                 <div>
                     <h1>
@@ -40,6 +60,18 @@ class Article extends React.Component {
                         {this.state.article.text}
                     </p>
                     <div>&nbsp;</div>
+                    <div className="table-responsive">
+                        <table className="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Article Liked By:</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {items}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             )
         }
