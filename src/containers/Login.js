@@ -10,7 +10,8 @@ class Login extends React.Component {
         this.userService = UserService.getInstance();
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            loggedIn: false
         };
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -46,7 +47,9 @@ class Login extends React.Component {
                     {
                         user: user,
                     }))
-            .then(() => console.log(this.state.user))
+            .then(() => this.setState({
+                loggedIn: true
+            }))
     }
 
 

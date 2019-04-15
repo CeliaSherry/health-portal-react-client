@@ -22,7 +22,7 @@ TODO:
 -Update CSS and styling
 -Populate dummy data
 -Figure out when to save provider info in database
--Still redirected if incorrect username/password
+-Still redirected if incorrect username/password, still redirected if passwords don't match
 -Register- should it have a verify password?
 -Favorite articles
  */

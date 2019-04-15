@@ -1,6 +1,5 @@
 import React from 'react'
 import TopNav from "../components/TopNav";
-import UserService from "../services/UserService";
 import {Link} from "react-router-dom";
 import CustomerService from "../services/CustomerService";
 import ProviderService from "../services/ProviderService";
@@ -9,7 +8,6 @@ class Register extends React.Component {
 
     constructor(props) {
         super(props);
-        this.userService = UserService.getInstance();
         this.customerService = CustomerService.getInstance();
         this.providerService = ProviderService.getInstance();
         this.state = {
@@ -79,11 +77,6 @@ class Register extends React.Component {
                         this.setState({user: user})
                     );
             }
-           // this.userService
-           //     .register(newUser)
-           //     .then(user =>
-           //         this.setState({user: user})
-           //     );
         } else {
             alert("Passwords Don't Match- Not Logged In")
         }

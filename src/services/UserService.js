@@ -51,6 +51,22 @@ class UserService {
             credentials: 'include'
         });
 
+    loggedIn = () =>
+        fetch(API_URL + "loggedin", {
+            method: 'POST',
+            credentials: 'include'
+        })
+            .then(response =>
+                response.json());
+
+    loggedInUser = () =>
+        fetch(API_URL + "loggedinuser", {
+            method: 'POST',
+            credentials: 'include'
+        })
+            .then(response =>
+                response.json());
+
 
     login = (user) =>
         fetch(API_URL + "login", {
