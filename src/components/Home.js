@@ -23,8 +23,8 @@ TODO:
 -Populate dummy data
 -Figure out when to save provider info in database
 -Still redirected if incorrect username/password, still redirected if passwords don't match
--Register- should it have a verify password?
--Favorite articles
+-Favorite articles/authored articles in profile
+-author articles/delete/update (edit toolbar at top if logged in user authored article)
 -When user registers let them have email, city, state, firstname, last name, etc.
 -Should profile have provider's practice?
  */

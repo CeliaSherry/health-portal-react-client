@@ -3,6 +3,7 @@ import TopNav from "../components/TopNav";
 import UserService from "../services/UserService";
 import ArticleService from "../services/ArticleService";
 import {Link} from "react-router-dom";
+import CustomerService from "../services/CustomerService";
 
 class PersonalProfile extends React.Component {
 
@@ -14,6 +15,8 @@ class PersonalProfile extends React.Component {
     constructor(props) {
         super(props);
         this.userService = UserService.getInstance();
+        this.customerService = CustomerService.getInstance();
+        this.articleService = ArticleService.getInstance();
         this.state = {
             loggedIn: false,
             firstName: '',
@@ -21,7 +24,8 @@ class PersonalProfile extends React.Component {
             email: '',
             city: '',
             usState: '',
-            role: ''
+            role: '',
+            articles: []
         }
 
         this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -59,14 +63,36 @@ class PersonalProfile extends React.Component {
     }
 
     getRole = (userId) => {
-            console.log(userId);
             this.userService.findRoleByUserId(userId)
                 .then(role =>
                     this.setState({
                         role: role
                     }))
-                .then(() => console.log(this.state.role))
+                .then(() =>{
+                    if(this.state.role == 'CUS') {
+                        this.getFavoritedArticles()
+                    } else if(this.state.role == 'PRO'){
+                        this.getAuthoredArticles()
+                    }
+                })
+    }
 
+    getFavoritedArticles = () => {
+        const userId = this.state.user.id;
+        this.customerService.findFavoritedArticles(userId)
+            .then(articles =>
+                this.setState({
+                    articles: articles
+                }))
+    }
+
+    getAuthoredArticles = () => {
+        const providerId = this.state.user.id;
+        this.articleService.findArticlesForProvider(providerId)
+            .then(articles =>
+                this.setState({
+                    articles: articles
+                }))
     }
 
 
@@ -173,9 +199,6 @@ class PersonalProfile extends React.Component {
         if (this.state.user) {
             return (
                 <div>
-                    <h1>
-                        {this.state.user.id}
-                    </h1>
                     <form>
                         <div className="form-group row">
                             <label htmlFor="username"
@@ -271,24 +294,72 @@ class PersonalProfile extends React.Component {
         }
         if (!(this.state.user)) {
             return (
-                <div>
-
-                </div>
+                <h1>
+                    Log in to See Personal Information.
+                </h1>
             )
         }
     }
 
     renderRoleData() {
-                if (this.state.role == 'PRO') {
+                if (this.state.role == 'CUS') {
+                    var items;
+                        items = this.state.articles
+                            .map(function (item, index) {
+                                return <tr key={index}>
+                                    <td>
+                                        <Link to={`/article/${item.id}`}>
+                                            <i className="fa fa-file">&nbsp;</i>
+                                            {item.title}
+                                        </Link>
+                                    </td>
+                                </tr>
+                            })
+
                     return (
                         <div>
-                            Provider
+                            <div className="table-responsive">
+                                <table className="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Favorited Articles</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {items}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     )
-                } else if (this.state.role == 'CUS') {
+                } else if (this.state.role == 'PRO') {
+                    var items;
+                    items = this.state.articles
+                        .map(function (item, index) {
+                            return <tr key={index}>
+                                <td>
+                                    <Link to={`/article/${item.id}`}>
+                                        <i className="fa fa-file">&nbsp;</i>
+                                        {item.title}
+                                    </Link>
+                                </td>
+                            </tr>
+                        })
+
                     return (
                         <div>
-                            Customer
+                            <div className="table-responsive">
+                                <table className="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Authored Articles</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {items}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     )
                 } else {
@@ -306,7 +377,7 @@ class PersonalProfile extends React.Component {
             <div className="container-fluid">
                 <TopNav/>
                 <h1>
-                    Personal Profile
+                    My Profile
                 </h1>
                 {this.renderData()}
                 {this.renderRoleData()}
