@@ -47,7 +47,7 @@ class UserService {
 
     logout = () =>
         fetch(API_URL + "logout", {
-            method: 'delete',
+            method: 'POST',
             credentials: 'include'
         });
 

@@ -98,6 +98,20 @@ class PersonalProfile extends React.Component {
 
     }
 
+    logout = () => {
+        this.userService.logout()
+            .then(() =>
+                this.setState({
+                    user: null,
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    city: '',
+                    usState: ''
+                })
+            );
+    }
+
     handleFirstNameChange(event) {
         this.setState(
             {
@@ -228,11 +242,11 @@ class PersonalProfile extends React.Component {
                                         role="button">
                                     Update
                                 </button>
-                                <a className="btn btn-danger btn-block"
-                                   href="/index.html"
-                                   role="button">
-                                    Logout
-                                </a>
+                                <Link onClick={() => this.logout()} to="/">
+                                    <button type="button" className="btn btn-danger btn-block">
+                                        Logout
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </form>
