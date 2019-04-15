@@ -1,9 +1,15 @@
 import React from 'react'
+import TopNav from "../components/LandingPage";
 
 class Login extends React.Component {
     render() {
         return (
-            <h1>Login</h1>
+            <div className="container-fluid">
+                <TopNav/>
+                <h1>
+                    Login
+                </h1>
+            </div>
         )
     }
 }

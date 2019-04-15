@@ -141,9 +141,6 @@ class Details extends Component {
                             Back to Results
                         </button>
                     </Link>
-                    <button className="btn btn-success" onClick={() => this.findProviders(this.state.practiceId)}>
-                        find practice
-                    </button>
                 </h2>
                 {this.renderData()}
             </div>

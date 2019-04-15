@@ -28,6 +28,11 @@ const TopNav = ({}) =>
                         </a>
                     </li>
                 </ul>
+                <Link to={`/login`}>
+                    <button className="btn btn-primary pull-right" type="button">
+                        Login
+                    </button>
+                </Link>
             </div>
         </nav>
 

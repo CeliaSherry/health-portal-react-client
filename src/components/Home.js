@@ -4,6 +4,7 @@ import ArticleService from "../services/ArticleService";
 import TopNav from "./TopNav";
 import './Home.css';
 import Login from "../containers/Login";
+import Register from "../containers/Register";
 import ResultsPage from "./ResultsPage";
 import SearchDoctor from "./SearchDoctor";
 import DetailsPage from "./DetailsPage";
@@ -58,6 +59,10 @@ class Home extends Component {
                                component={PersonalProfile} />
                         <Route path='/article/:articleId' exact
                                component={Article} />
+                        <Route path='/login' exact
+                               component={Login} />
+                        <Route path='/register' exact
+                               component={Register} />
                     </div>
                 </Router>
             </div>
