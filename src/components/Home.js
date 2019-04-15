@@ -24,6 +24,7 @@ TODO:
 -Figure out when to save provider info in database
 -Still redirected if incorrect username/password
 -Register- should it have a verify password?
+-Favorite articles
  */
 
 

@@ -39,7 +39,7 @@ class CustomerService {
     }
 
     register = (user) =>
-        fetch(API_URL + "customers/register", {
+        fetch(API_URL + "customers", {
             body: JSON.stringify(user),
             // credentials: "include",
             headers: {

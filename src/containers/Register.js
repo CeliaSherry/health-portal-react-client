@@ -2,26 +2,40 @@ import React from 'react'
 import TopNav from "../components/TopNav";
 import UserService from "../services/UserService";
 import {Link} from "react-router-dom";
+import CustomerService from "../services/CustomerService";
+import ProviderService from "../services/ProviderService";
 
 class Register extends React.Component {
 
     constructor(props) {
         super(props);
         this.userService = UserService.getInstance();
+        this.customerService = CustomerService.getInstance();
+        this.providerService = ProviderService.getInstance();
         this.state = {
             username: '',
             password: '',
-            verifyPassword: ''
+            verifyPassword: '',
+            role: 'CUS'
         };
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.verifyPasswordChange = this.verifyPasswordChange.bind(this);
+        this.handleRoleChange = this.handleRoleChange.bind(this);
     }
 
     handleUsernameChange(event) {
         this.setState(
             {
                 username: event.target.value
+            }
+        );
+    }
+
+    handleRoleChange(event) {
+        this.setState(
+            {
+                role: event.target.value
             }
         );
     }
@@ -45,17 +59,31 @@ class Register extends React.Component {
         const username = this.state.username;
         const password = this.state.password;
         const verifyPassword = this.state.verifyPassword;
+        const role = this.state.role;
         if(password == verifyPassword) {
             let newUser = {
                 username: username,
                 password: password
 
             }
-            this.userService
-                .register(newUser)
-                .then(user =>
-                    this.setState({user: user})
-                );
+            if(role == 'CUS'){
+                 this.customerService
+                     .register(newUser)
+                     .then(user =>
+                         this.setState({user: user})
+                     );
+            } else {
+                this.providerService
+                    .register(newUser)
+                    .then(user =>
+                        this.setState({user: user})
+                    );
+            }
+           // this.userService
+           //     .register(newUser)
+           //     .then(user =>
+           //         this.setState({user: user})
+           //     );
         } else {
             alert("Passwords Don't Match- Not Logged In")
         }
@@ -97,16 +125,30 @@ class Register extends React.Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label htmlFor="verifypassword"
+                        <label htmlFor="verifyPassword"
                                className="col-sm-2">
                             Verify Password
                         </label>
                         <div className="col-sm-10">
                             <input className="form-control"
-                                   id="password"
+                                   id="verifyPassword"
                                    placeholder="!@#$QWERzxc"
                                    value={this.state.verifyPassword}
                                    onChange={this.verifyPasswordChange}/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="userType"
+                               className="col-sm-2">
+                            User Type
+                        </label>
+                        <div className="col-sm-10">
+                            <select value={this.state.role}
+                                    onChange={this.handleRoleChange}
+                                    id="userType">
+                                <option value="CUS">Customer</option>
+                                <option value="PRO">Provider</option>
+                            </select>
                         </div>
                     </div>
                     <div className="form-group row">
