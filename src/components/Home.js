@@ -25,6 +25,8 @@ TODO:
 -Still redirected if incorrect username/password, still redirected if passwords don't match
 -Register- should it have a verify password?
 -Favorite articles
+-When user registers let them have email, city, state, firstname, last name, etc.
+-Should profile have provider's practice?
  */
 
 
