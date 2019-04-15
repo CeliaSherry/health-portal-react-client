@@ -2,6 +2,7 @@ import React from 'react'
 import TopNav from "../components/TopNav";
 import UserService from "../services/UserService";
 import ArticleService from "../services/ArticleService";
+import {Link} from "react-router-dom";
 
 class PersonalProfile extends React.Component {
 
@@ -20,25 +21,58 @@ class PersonalProfile extends React.Component {
     }
 
 
-
     componentDidMount = () =>
         this.loggedIn();
 
     componentDidUpdate = () => {
-        if(this.state.loggedIn == false) {
+        if (this.state.loggedIn == false) {
             this.loggedIn();
         }
     }
-   //     this.loggedIn();
+    //     this.loggedIn();
+
+    loggedInUser = () => {
+        if(this.state.loggedIn == true) {
+            this.userService.loggedInUser()
+                .then(user =>
+                    this.setState({
+                        user: user
+                    }))
+        }
+    }
 
 
     loggedIn = () =>
         this.userService.loggedIn()
             .then(boolean =>
-                this.setState ({
+                this.setState({
                     loggedIn: boolean
                 }))
+            .then(() => this.loggedInUser())
+          //  .then(() => this.userService.loggedInUser()
+          //      .then(user =>
+          //          this.setState({
+          //              user: user
+          //          })))
 
+
+    renderData() {
+        if (this.state.user) {
+            return (
+                <div>
+                   <h1>
+                        {this.state.user.username}
+                    </h1>
+                </div>
+            )
+        }
+        if (!(this.state.user)) {
+            return (
+                <div></div>
+            )
+        }
+
+    }
 
     render() {
         return (
@@ -47,6 +81,7 @@ class PersonalProfile extends React.Component {
                 <h1>
                     Personal Profile
                 </h1>
+                {this.renderData()}
             </div>
         )
     }

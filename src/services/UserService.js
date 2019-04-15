@@ -62,10 +62,12 @@ class UserService {
     loggedInUser = () =>
         fetch(API_URL + "loggedinuser", {
             method: 'POST',
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-            .then(response =>
-                response.json());
+            .then(response => response.json());
 
 
     login = (user) =>
