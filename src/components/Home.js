@@ -13,6 +13,20 @@ import UserProfile from "../containers/UserProfile";
 import PersonalProfile from "../containers/PersonalProfile";
 import Article from "../containers/Article";
 
+
+
+
+/*
+TODO:
+-Modularize everything
+-Update CSS and styling
+-Populate dummy data
+-Figure out when to save provider info in database
+-Still redirected if incorrect username/password
+-Register- should it have a verify password?
+ */
+
+
 class Home extends Component {
     constructor(props) {
         super(props);
