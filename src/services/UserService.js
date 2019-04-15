@@ -22,6 +22,10 @@ class UserService {
         fetch(API_URL + "user/" + userId)
             .then(response => response.json());
 
+    findRoleByUserId = (userId) =>
+        fetch(API_URL + "role/" + userId)
+            .then(response => response.text());
+
     removeUser = (userId) =>
         fetch(API_URL + "user/" + userId, {
             method: 'delete',

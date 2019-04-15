@@ -20,7 +20,8 @@ class PersonalProfile extends React.Component {
             lastName: '',
             email: '',
             city: '',
-            usState: ''
+            usState: '',
+            role: ''
         }
 
         this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -53,7 +54,19 @@ class PersonalProfile extends React.Component {
                         city: user.city,
                         usState: user.state
                     }))
+                .then(() => this.getRole(this.state.user.id))
         }
+    }
+
+    getRole = (userId) => {
+            console.log(userId);
+            this.userService.findRoleByUserId(userId)
+                .then(role =>
+                    this.setState({
+                        role: role
+                    }))
+                .then(() => console.log(this.state.role))
+
     }
 
 
@@ -64,6 +77,9 @@ class PersonalProfile extends React.Component {
                     loggedIn: boolean
                 }))
             .then(() => this.loggedInUser())
+
+
+
 
     updateUser = () => {
         const username = this.state.user.username;
@@ -260,8 +276,30 @@ class PersonalProfile extends React.Component {
                 </div>
             )
         }
-
     }
+
+    renderRoleData() {
+                if (this.state.role == 'PRO') {
+                    return (
+                        <div>
+                            Provider
+                        </div>
+                    )
+                } else if (this.state.role == 'CUS') {
+                    return (
+                        <div>
+                            Customer
+                        </div>
+                    )
+                } else {
+                    return (
+                        <div>
+                            None
+                        </div>
+                    )
+                }
+    }
+
 
     render() {
         return (
@@ -271,6 +309,7 @@ class PersonalProfile extends React.Component {
                     Personal Profile
                 </h1>
                 {this.renderData()}
+                {this.renderRoleData()}
             </div>
         )
     }
