@@ -4,6 +4,7 @@ import UserService from "../services/UserService";
 import ArticleService from "../services/ArticleService";
 import {Link} from "react-router-dom";
 import CustomerService from "../services/CustomerService";
+import "./PersonalProfile.css"
 
 class PersonalProfile extends React.Component {
 
@@ -63,18 +64,18 @@ class PersonalProfile extends React.Component {
     }
 
     getRole = (userId) => {
-            this.userService.findRoleByUserId(userId)
-                .then(role =>
-                    this.setState({
-                        role: role
-                    }))
-                .then(() =>{
-                    if(this.state.role == 'CUS') {
-                        this.getFavoritedArticles()
-                    } else if(this.state.role == 'PRO'){
-                        this.getAuthoredArticles()
-                    }
-                })
+        this.userService.findRoleByUserId(userId)
+            .then(role =>
+                this.setState({
+                    role: role
+                }))
+            .then(() => {
+                if (this.state.role == 'CUS') {
+                    this.getFavoritedArticles()
+                } else if (this.state.role == 'PRO') {
+                    this.getAuthoredArticles()
+                }
+            })
     }
 
     getFavoritedArticles = () => {
@@ -104,7 +105,17 @@ class PersonalProfile extends React.Component {
                 }))
             .then(() => this.loggedInUser())
 
-
+    addArticle = () => {
+        console.log(this.state.user)
+        let newArticle = {
+            title: 'New Article',
+            text: 'New Text'
+        }
+        this.articleService
+            .createArticle(newArticle)
+            .then(() =>
+                this.getAuthoredArticles());
+    }
 
 
     updateUser = () => {
@@ -126,7 +137,7 @@ class PersonalProfile extends React.Component {
             state: usState
         }
 
-        this.userService.updateUser(userId,newUser)
+        this.userService.updateUser(userId, newUser)
             .then(user =>
                 this.setState({
                     user: user,
@@ -303,72 +314,80 @@ class PersonalProfile extends React.Component {
     }
 
     renderRoleData() {
-                if (this.state.role == 'CUS') {
-                    var items;
-                        items = this.state.articles
-                            .map(function (item, index) {
-                                return <tr key={index}>
-                                    <td>
-                                        <Link to={`/article/${item.id}`}>
-                                            <i className="fa fa-file">&nbsp;</i>
-                                            {item.title}
-                                        </Link>
-                                    </td>
-                                </tr>
-                            })
+        if (this.state.role == 'CUS') {
+            var items;
+            items = this.state.articles
+                .map(function (item, index) {
+                    return <tr key={index}>
+                        <td>
+                            <Link to={`/article/${item.id}`}>
+                                <i className="fa fa-file">&nbsp;</i>
+                                {item.title}
+                            </Link>
+                        </td>
+                    </tr>
+                })
 
-                    return (
-                        <div>
-                            <div className="table-responsive">
-                                <table className="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Favorited Articles</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {items}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    )
-                } else if (this.state.role == 'PRO') {
-                    var items;
-                    items = this.state.articles
-                        .map(function (item, index) {
-                            return <tr key={index}>
-                                <td>
-                                    <Link to={`/article/${item.id}`}>
-                                        <i className="fa fa-file">&nbsp;</i>
-                                        {item.title}
-                                    </Link>
-                                </td>
+            return (
+                <div>
+                    <div className="table-responsive">
+                        <table className="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Favorited Articles</th>
                             </tr>
-                        })
+                            </thead>
+                            <tbody>
+                            {items}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )
+        } else if (this.state.role == 'PRO') {
+            var items;
+            items = this.state.articles
+                .map(function (item, index) {
+                    return <tr key={index}>
+                        <td>
+                            <Link to={`/article/${item.id}`}>
+                                <i className="fa fa-file">&nbsp;</i>
+                                {item.title}
+                            </Link>
+                        </td>
+                    </tr>
+                })
 
-                    return (
-                        <div>
-                            <div className="table-responsive">
-                                <table className="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Authored Articles</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {items}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    )
-                } else {
-                    return (
-                        <div>
-                        </div>
-                    )
-                }
+            return (
+                <div>
+                    <div className="table-responsive">
+                        <table className="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Authored Articles</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {items}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="col-1" id="greycolor">
+                        <a onClick={() => this.addArticle()}>
+                    <span className="fa-stack fa-2x wd-bottom-right" id="plusicon">
+	                    <i className="fa fa-circle fa-stack-2x"></i>
+	                    <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
+                    </span>
+                        </a>
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                </div>
+            )
+        }
     }
 
 

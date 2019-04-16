@@ -14,7 +14,8 @@ class LandingPage extends React.Component {
         this.userService = UserService.getInstance();
         this.state = {
             articles: [],
-            loggedIn: false
+            loggedIn: false,
+            specialArticles: []
         }
     }
 
@@ -34,13 +35,6 @@ class LandingPage extends React.Component {
                     articles: articles
                 }))
 
-
-    findAllArticles = () =>
-        this.articleService.findAllArticles()
-            .then(articles =>
-                this.setState ({
-                    articles: articles
-                }))
 
     loggedIn = () =>
         this.userService.loggedIn()
@@ -86,7 +80,7 @@ class LandingPage extends React.Component {
         this.customerService.findFavoritedArticles(userId)
             .then(articles =>
                 this.setState({
-                    articles: articles
+                    specialArticles: articles
                 }))
     }
 
@@ -95,7 +89,7 @@ class LandingPage extends React.Component {
         this.articleService.findArticlesForProvider(providerId)
             .then(articles =>
                 this.setState({
-                    articles: articles
+                    spacialArticles: articles
                 }))
     }
 
@@ -145,7 +139,7 @@ class LandingPage extends React.Component {
     renderRoleData() {
         if (this.state.role == 'CUS') {
             var items;
-            items = this.state.articles
+            items = this.state.specialArticles
                 .map(function (item, index) {
                     return <tr key={index}>
                         <td>
@@ -175,7 +169,7 @@ class LandingPage extends React.Component {
             )
         } else if (this.state.role == 'PRO') {
             var items;
-            items = this.state.articles
+            items = this.state.spacialArticles
                 .map(function (item, index) {
                     return <tr key={index}>
                         <td>
