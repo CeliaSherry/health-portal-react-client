@@ -3,6 +3,7 @@ import TopNav from "./TopNav";
 import {Link} from "react-router-dom";
 import ArticleService from "../services/ArticleService";
 import CustomerService from "../services/CustomerService";
+import UserService from "../services/UserService";
 
 class LandingPage extends React.Component {
 
@@ -10,13 +11,21 @@ class LandingPage extends React.Component {
         super(props);
         this.articleService = ArticleService.getInstance();
         this.customerService = CustomerService.getInstance();
+        this.userService = UserService.getInstance();
         this.state = {
-            articles: []
+            articles: [],
+            loggedIn: false
         }
     }
 
     componentDidMount = () =>
         this.findAllArticles();
+
+    componentDidUpdate = () => {
+        if (this.state.loggedIn == false) {
+            this.loggedIn();
+        }
+    }
 
     findAllArticles = () =>
         this.articleService.findAllArticles()
@@ -24,29 +33,75 @@ class LandingPage extends React.Component {
                 this.setState ({
                     articles: articles
                 }))
-            .then(() => this.customerService.findFavoritedArticles(42)
-                .then(favoritedArticles =>
+
+
+    findAllArticles = () =>
+        this.articleService.findAllArticles()
+            .then(articles =>
+                this.setState ({
+                    articles: articles
+                }))
+
+    loggedIn = () =>
+        this.userService.loggedIn()
+            .then(boolean =>
                 this.setState({
-                    favoritedArticles: favoritedArticles
-                })))
+                    loggedIn: boolean
+                }))
+            .then(() => this.loggedInUser())
+
+    loggedInUser = () => {
+        if (this.state.loggedIn == true) {
+            this.userService.loggedInUser()
+                .then(user =>
+                    this.setState({
+                        user: user,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        email: user.email,
+                        city: user.city,
+                        usState: user.state
+                    }))
+                .then(() => this.getRole(this.state.user.id))
+        }
+    }
+
+    getRole = (userId) => {
+        this.userService.findRoleByUserId(userId)
+            .then(role =>
+                this.setState({
+                    role: role
+                }))
+            .then(() =>{
+                if(this.state.role == 'CUS') {
+                    this.getFavoritedArticles()
+                } else if(this.state.role == 'PRO'){
+                    this.getAuthoredArticles()
+                }
+            })
+    }
+
+    getFavoritedArticles = () => {
+        const userId = this.state.user.id;
+        this.customerService.findFavoritedArticles(userId)
+            .then(articles =>
+                this.setState({
+                    articles: articles
+                }))
+    }
+
+    getAuthoredArticles = () => {
+        const providerId = this.state.user.id;
+        this.articleService.findArticlesForProvider(providerId)
+            .then(articles =>
+                this.setState({
+                    articles: articles
+                }))
+    }
 
 
     renderData() {
         var articles;
-        var items;
-        if (this.state.favoritedArticles) {
-            items = this.state.favoritedArticles
-                .map(function (item, index) {
-                    return <tr key={index}>
-                        <Link to={`/article/${item.id}`}>
-                            <td>
-                                <i className="fa fa-thumbs-up">&nbsp;</i>
-                                {item.title}
-                            </td>
-                        </Link>
-                    </tr>
-                });
-        }
         if (this.state.articles) {
             articles = this.state.articles
                 .map(function (item, index) {
@@ -65,16 +120,6 @@ class LandingPage extends React.Component {
             return (
                 <div>
                     <div className="table-responsive">
-                        <table className="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>Articles Favorited By Me</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {items}
-                            </tbody>
-                        </table>
                         <table className="table table-hover">
                             <thead>
                             <tr>
@@ -97,6 +142,75 @@ class LandingPage extends React.Component {
 
     }
 
+    renderRoleData() {
+        if (this.state.role == 'CUS') {
+            var items;
+            items = this.state.articles
+                .map(function (item, index) {
+                    return <tr key={index}>
+                        <td>
+                            <Link to={`/article/${item.id}`}>
+                                <i className="fa fa-file">&nbsp;</i>
+                                {item.title}
+                            </Link>
+                        </td>
+                    </tr>
+                })
+
+            return (
+                <div>
+                    <div className="table-responsive">
+                        <table className="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Favorited Articles</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {items}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )
+        } else if (this.state.role == 'PRO') {
+            var items;
+            items = this.state.articles
+                .map(function (item, index) {
+                    return <tr key={index}>
+                        <td>
+                            <Link to={`/article/${item.id}`}>
+                                <i className="fa fa-file">&nbsp;</i>
+                                {item.title}
+                            </Link>
+                        </td>
+                    </tr>
+                })
+
+            return (
+                <div>
+                    <div className="table-responsive">
+                        <table className="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Authored Articles</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {items}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                </div>
+            )
+        }
+    }
+
 
 
     render() {
@@ -112,6 +226,7 @@ class LandingPage extends React.Component {
                     is to provide clarity in the confusing field of healthcare.
                 </p>
                 {this.renderData()}
+                {this.renderRoleData()}
             </div>
         )
     }

@@ -199,6 +199,7 @@ class PersonalProfile extends React.Component {
         if (this.state.user) {
             return (
                 <div>
+                    <h1>Profile</h1>
                     <form>
                         <div className="form-group row">
                             <label htmlFor="username"
@@ -295,7 +296,7 @@ class PersonalProfile extends React.Component {
         if (!(this.state.user)) {
             return (
                 <h1>
-                    Log in to See Personal Information.
+                    Log in to See Profile.
                 </h1>
             )
         }
@@ -365,7 +366,6 @@ class PersonalProfile extends React.Component {
                 } else {
                     return (
                         <div>
-                            None
                         </div>
                     )
                 }
@@ -376,9 +376,6 @@ class PersonalProfile extends React.Component {
         return (
             <div className="container-fluid">
                 <TopNav/>
-                <h1>
-                    My Profile
-                </h1>
                 {this.renderData()}
                 {this.renderRoleData()}
             </div>

@@ -12,6 +12,7 @@ import LandingPage from "./LandingPage";
 import UserProfile from "../containers/UserProfile";
 import PersonalProfile from "../containers/PersonalProfile";
 import Article from "../containers/Article";
+import UserService from "../services/UserService";
 
 
 
@@ -34,23 +35,17 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.articleService = ArticleService.getInstance();
+        this.userService = UserService.getInstance();
         this.state = {
             articles: []
         }
     }
 
-    componentDidMount = () =>
-        this.findAllArticles();
+   // componentDidMount = () =>
+   //     this.findAllArticles();
 
-    componentDidUpdate = () =>
-        this.findAllArticles();
-
-    findAllArticles = () =>
-        this.articleService.findAllArticles()
-            .then(articles =>
-            this.setState ({
-                articles: articles
-            }))
+  //  componentDidUpdate = () =>
+   //     this.findAllArticles();
 
 
     render() {
