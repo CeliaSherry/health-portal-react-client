@@ -20,11 +20,8 @@ import UserService from "../services/UserService";
 /*
 TODO:
 -Modularize everything
--Populate dummy data
--Figure out when to save provider info in database
 -Still redirected if incorrect username/password, still redirected if passwords don't match
 -Should profile have provider's practice? ability to set practice?
--currently logged in user must be clearly marked
  */
 
 
