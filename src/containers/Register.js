@@ -212,7 +212,8 @@ class Register extends React.Component {
                             <input className="form-control"
                                    value={this.state.firstName}
                                    onChange={this.handleFirstNameChange}
-                                   id="firstName"/>
+                                   id="firstName"
+                                   placeholder="First Name"/>
                         </div>
                     </div>
                     <div className="form-group row">
@@ -224,7 +225,8 @@ class Register extends React.Component {
                             <input className="form-control"
                                    value={this.state.lastName}
                                    onChange={this.handleLastNameChange}
-                                   id="lastName"/>
+                                   id="lastName"
+                                   placeholder="Last Name"/>
                         </div>
                     </div>
                     <div className="form-group row">
@@ -237,7 +239,8 @@ class Register extends React.Component {
                                    type="email"
                                    value={this.state.email}
                                    onChange={this.handleEmailNameChange}
-                                   id="email"/>
+                                   id="email"
+                                   placeholder="Email@gmail.com"/>
                         </div>
                     </div>
                     <div className="form-group row">
@@ -249,7 +252,8 @@ class Register extends React.Component {
                             <input className="form-control"
                                    value={this.state.city}
                                    onChange={this.handleCityNameChange}
-                                   id="city"/>
+                                   id="city"
+                                   placeholder="City"/>
                         </div>
                     </div>
                     <div className="form-group row">
@@ -261,7 +265,8 @@ class Register extends React.Component {
                             <input className="form-control"
                                    value={this.state.usState}
                                    onChange={this.handleStateNameChange}
-                                   id="usState"/>
+                                   id="usState"
+                                   placeholder="State"/>
                         </div>
                     </div>
                     <div className="form-group row">
