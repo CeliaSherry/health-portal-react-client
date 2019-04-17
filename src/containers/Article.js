@@ -259,10 +259,13 @@ class Article extends React.Component {
                                 Article Text
                             </label>
                             <div className="col-sm-10">
-                                <input className="form-control"
+                                <textarea className="form-control"
                                        value={this.state.text}
                                        onChange={this.handleTextChange}
-                                       id="firstName"/>
+                                       rows="4"
+                                       id="text">
+                                </textarea>
+
                             </div>
                         </div>
                     </form>

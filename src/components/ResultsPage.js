@@ -46,10 +46,10 @@ class ResultsPage extends Component {
                                 <i className="fa fa-stethoscope">&nbsp;</i>
                                 {item.profile.first_name} {item.profile.last_name}
                             </td>
-                            <td>
+                            <td className="d-none d-sm-table-cell">
                                 {item.profile.title}
                             </td>
-                            <td>
+                            <td className="d-none d-sm-table-cell">
                                 {item.specialties[0].name}
                             </td>
                             <td>
@@ -70,8 +70,8 @@ class ResultsPage extends Component {
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Title</th>
-                        <th>Specialty</th>
+                        <th className="d-none d-sm-table-cell">Title</th>
+                        <th className="d-none d-sm-table-cell">Specialty</th>
                         <th> </th>
                     </tr>
                     </thead>

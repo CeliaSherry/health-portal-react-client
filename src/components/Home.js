@@ -20,12 +20,13 @@ import UserService from "../services/UserService";
 /*
 TODO:
 -Modularize everything
--Update CSS and styling
+-Update CSS and styling, foreground and background coloring
 -Populate dummy data
 -Figure out when to save provider info in database
 -Still redirected if incorrect username/password, still redirected if passwords don't match
 -When user registers let them have email, city, state, firstname, last name, etc.
 -Should profile have provider's practice? ability to set practice?
+-currently logged in user must be clearly marked
  */
 
 

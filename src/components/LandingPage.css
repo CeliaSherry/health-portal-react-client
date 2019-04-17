@@ -1,0 +1,47 @@
+#intro{
+    text-align: center;
+    border-bottom: gainsboro;
+    border-bottom-style: solid;
+    padding-bottom: 15px;
+}
+
+h1{
+    padding-top: 15px;
+}
+
+i{
+    color: lightslategray;
+}
+
+thead {
+    background-color: lavender;
+}
+
+h4 {
+    background-color: lavender;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 8px;
+    font-size: large;
+}
+
+#backColor {
+    background-color: ghostwhite;
+    border-left: gainsboro;
+    border-right: gainsboro;
+    border-bottom: gainsboro;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-width: thin;
+    border-right-width: thin;
+    border-bottom-width: thin;
+}
+
+.card{
+    background-color: ghostwhite;
+}
+

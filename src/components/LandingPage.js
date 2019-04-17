@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import ArticleService from "../services/ArticleService";
 import CustomerService from "../services/CustomerService";
 import UserService from "../services/UserService";
+import "./LandingPage.css";
 
 class LandingPage extends React.Component {
 
@@ -31,7 +32,7 @@ class LandingPage extends React.Component {
     findAllArticles = () =>
         this.articleService.findAllArticles()
             .then(articles =>
-                this.setState ({
+                this.setState({
                     articles: articles
                 }))
 
@@ -66,10 +67,10 @@ class LandingPage extends React.Component {
                 this.setState({
                     role: role
                 }))
-            .then(() =>{
-                if(this.state.role == 'CUS') {
+            .then(() => {
+                if (this.state.role == 'CUS') {
                     this.getFavoritedArticles()
-                } else if(this.state.role == 'PRO'){
+                } else if (this.state.role == 'PRO') {
                     this.getAuthoredArticles()
                 }
             })
@@ -99,21 +100,38 @@ class LandingPage extends React.Component {
         if (this.state.articles) {
             articles = this.state.articles
                 .map(function (item, index) {
-                        return <tr key={index}>
+                    return <div className="col-lg-4 col-md-4 col-sm-6">
+                    <div className="card">
+                            <div className="card-body">
+                                <h5 className="card-title">{item.title}</h5>
+                                    <p className="card-text">
+                                        {item.text}
+                                    </p>
+                                <Link to={`/article/${item.id}`}>
+                                    <button className="btn btn-primary">See Article</button>
+                                </Link>
+                            </div>
+                    </div>
+                    </div>
+                    {/*                    <tr key={index}>
                             <td>
                                 <Link to={`/article/${item.id}`}>
                                     <i className="fa fa-file">&nbsp;</i>
                                     {item.title}
                                 </Link>
                             </td>
-                        </tr>
+                        </tr>*/
+                    }
 
                 });
         }
         if (this.state.articles) {
             return (
                 <div>
-                    <div className="table-responsive">
+                    <h4>Popular Articles</h4>
+                    <div className="card-deck">
+                        {articles}
+                        {/*                    <div className="table-responsive">
                         <table className="table table-hover">
                             <thead>
                             <tr>
@@ -123,8 +141,9 @@ class LandingPage extends React.Component {
                             <tbody>
                             {articles}
                             </tbody>
-                        </table>
+                        </table>*/}
                     </div>
+                    <div>&nbsp;</div>
                 </div>
             )
         }
@@ -206,21 +225,24 @@ class LandingPage extends React.Component {
     }
 
 
-
     render() {
         return (
             <div className="container-fluid">
                 <TopNav/>
+                <div id="backColor">
                 <h1 className="d-flex justify-content-center">
                     Health Portal
                 </h1>
-                <p className="d-flex justify-content-center">
-                    This website is devoted to giving you the most accurate information about your health care questions available.
-                    Search for providers and view articles they have authored.  Read and save articles for later reference.  Our goal
+                <p id="intro" className="d-flex justify-content-center">
+                    This website is devoted to giving you the most accurate information about your health care questions
+                    available.
+                    Search for providers and view articles they have authored. Read and save articles for later
+                    reference. Our goal
                     is to provide clarity in the confusing field of healthcare.
                 </p>
                 {this.renderData()}
                 {this.renderRoleData()}
+            </div>
             </div>
         )
     }
