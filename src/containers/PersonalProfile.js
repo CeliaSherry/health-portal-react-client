@@ -105,14 +105,15 @@ class PersonalProfile extends React.Component {
                 }))
             .then(() => this.loggedInUser())
 
+
     addArticle = () => {
-        console.log(this.state.user)
+        const providerId = this.state.user.id;
         let newArticle = {
             title: 'New Article',
             text: 'New Text'
         }
         this.articleService
-            .createArticle(newArticle)
+            .createArticle(providerId, newArticle)
             .then(() =>
                 this.getAuthoredArticles());
     }
@@ -357,7 +358,6 @@ class PersonalProfile extends React.Component {
                         </td>
                     </tr>
                 })
-
             return (
                 <div>
                     <div className="table-responsive">

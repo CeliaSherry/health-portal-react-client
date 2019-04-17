@@ -111,6 +111,14 @@ class Article extends React.Component {
             .then(() => console.log(this.state.customers))
     }
 
+    deleteArticle = () => {
+        const articleId = this.state.articleId;
+        this.articleService
+            .removeArticle(articleId)
+            .then(() =>
+                this.getAuthoredArticles());
+    }
+
     renderData() {
         var items;
         if (this.state.customers) {
@@ -162,7 +170,7 @@ class Article extends React.Component {
 
     }
 
-    renderRoleData() {
+    renderCustomerData() {
         if (this.state.role == 'CUS') {
             return (
                 <div>
@@ -172,13 +180,28 @@ class Article extends React.Component {
                     </a>
                 </div>
             )
-        } else if (this.state.role == 'PRO') {
+        }  else {
             return (
                 <div>
-                    Provider
                 </div>
             )
-        } else {
+        }
+    }
+
+
+    renderProviderData() {
+        if (this.state.role == 'PRO') {
+            return (
+                <div>
+                    <div className="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" className="btn btn-primary">Edit</button>
+                        <Link onClick={() => this.deleteArticle()} to="/profile">
+                        <button type="button" className="btn btn-danger">Delete</button>
+                        </Link>
+                    </div>
+                </div>
+            )
+        }  else {
             return (
                 <div>
                 </div>
@@ -191,7 +214,8 @@ class Article extends React.Component {
             <div className="container-fluid">
                 <TopNav/>
                 {this.renderData()}
-                {this.renderRoleData()}
+                {this.renderProviderData()}
+                {this.renderCustomerData()}
             </div>
         )
     }

@@ -45,8 +45,8 @@ class ArticleService {
         });
     }
 
-    createArticle = (article) =>
-        fetch(API_URL + "articles", {
+    createArticle = (providerId, article) =>
+        fetch(API_URL + "provider/" + providerId + "/articles", {
             body: JSON.stringify(article),
             // credentials: "include",
             headers: {
@@ -55,6 +55,8 @@ class ArticleService {
             method: 'POST'
         }).then(response =>
             response.json());
+
+
 
     findFavoritedCustomers = (articleId) =>
         fetch(API_URL + "articles/" + articleId + "/customer")
