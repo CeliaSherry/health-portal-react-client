@@ -3,15 +3,21 @@ import TopNav from "./TopNav";
 import {Link} from "react-router-dom";
 import PracticeService from "../services/PracticeService";
 import './DetailsPage.css';
+import UserService from "../services/UserService";
 
 class Details extends Component {
 
     constructor(props) {
         super(props);
+        this.userService = UserService.getInstance();
         this.practiceService = PracticeService.getInstance();
         this.state = {
             location: '',
-            practiceId: ''
+            practiceId: '',
+            loggedIn: false,
+            user: {
+                username: ''
+            }
         };
         this.renderData = this.renderData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,6 +26,35 @@ class Details extends Component {
 
     componentDidMount = () =>
         this.handleSubmit()
+
+    componentDidUpdate = () => {
+        if (this.state.loggedIn == false) {
+            this.loggedIn();
+        }
+    }
+
+    loggedIn = () =>
+        this.userService.loggedIn()
+            .then(boolean =>
+                this.setState({
+                    loggedIn: boolean
+                }))
+            .then(() => this.loggedInUser())
+
+    loggedInUser = () => {
+        if (this.state.loggedIn == true) {
+            this.userService.loggedInUser()
+                .then(user =>
+                    this.setState({
+                        user: user,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        email: user.email,
+                        city: user.city,
+                        usState: user.state
+                    }))
+        }
+    }
 
 
     handleSubmit(event) {
@@ -82,7 +117,7 @@ class Details extends Component {
                     })
                 });
         }
-        if (this.state.practice) {
+        if (this.state.doctors) {
             return (
                 <div>
                     <h1>
@@ -131,7 +166,7 @@ class Details extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <TopNav/>
+                <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
                 <div> &nbsp;
                 </div>
                 <h2>

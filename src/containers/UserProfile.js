@@ -15,13 +15,45 @@ class UserProfile extends React.Component {
         this.providerService = ProviderService.getInstance();
         this.articleService = ArticleService.getInstance();
         this.state = {
-            user: '',
+            user: {
+                username: ''
+            },
+            loggedIn: false,
             specialArticles: []
         }
     }
 
     componentDidMount = () =>
         this.findUserById();
+
+    componentDidUpdate = () => {
+        if (this.state.loggedIn == false) {
+            this.loggedIn();
+        }
+    }
+
+    loggedIn = () =>
+        this.userService.loggedIn()
+            .then(boolean =>
+                this.setState({
+                    loggedIn: boolean
+                }))
+            .then(() => this.loggedInUser())
+
+    loggedInUser = () => {
+        if (this.state.loggedIn == true) {
+            this.userService.loggedInUser()
+                .then(user =>
+                    this.setState({
+                        user: user,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        email: user.email,
+                        city: user.city,
+                        usState: user.state
+                    }))
+        }
+    }
 
 
     findUserById = () => {
@@ -80,7 +112,7 @@ class UserProfile extends React.Component {
     }
 
     renderRoleData() {
-        if (this.state.role == 'CUS') {
+        if (this.state.role == 'CUS' && this.state.specialArticles.length > 0) {
             var items;
             items = this.state.specialArticles
                 .map(function (item, index) {
@@ -152,7 +184,7 @@ class UserProfile extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <TopNav/>
+                <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
                 <div id="backColor">
                 <h1>
                     Profile

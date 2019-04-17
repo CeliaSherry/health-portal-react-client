@@ -28,7 +28,10 @@ class PracticeService {
 
     findPracticeByPracticeId = (practiceUid) =>
         fetch(API_URL + "practiceId/" + practiceUid)
-            .then(response => response.json());
+            .then(response => response.json())
+            .catch(error => {
+
+            });
 
 
     removePractice = (practiceId) =>

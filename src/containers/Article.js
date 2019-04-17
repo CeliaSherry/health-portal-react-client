@@ -19,7 +19,10 @@ class Article extends React.Component {
             loggedIn: false,
             editMode: false,
             title: '',
-            text: ''
+            text: '',
+            user: {
+                username: ''
+            }
         }
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
@@ -352,7 +355,7 @@ class Article extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <TopNav/>
+                <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
                 <div id="backColor">
                 {!this.state.editMode && this.renderData()}
                 {this.state.editMode && this.renderEditData()}

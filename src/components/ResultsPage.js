@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import TopNav from "./TopNav";
 import {Link} from "react-router-dom";
+import UserService from "../services/UserService";
 
 class ResultsPage extends Component {
 
     constructor(props) {
         super(props);
+        this.userService = UserService.getInstance();
             this.state = {
-                location: ''
+                location: '',
+                loggedIn: false,
+                user: {
+                    username: ''
+                }
             };
             this.renderDoctors = this.renderDoctors.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,6 +21,35 @@ class ResultsPage extends Component {
 
     componentDidMount = () =>
         this.handleSubmit();
+
+    componentDidUpdate = () => {
+        if (this.state.loggedIn == false) {
+            this.loggedIn();
+        }
+    }
+
+    loggedIn = () =>
+        this.userService.loggedIn()
+            .then(boolean =>
+                this.setState({
+                    loggedIn: boolean
+                }))
+            .then(() => this.loggedInUser())
+
+    loggedInUser = () => {
+        if (this.state.loggedIn == true) {
+            this.userService.loggedInUser()
+                .then(user =>
+                    this.setState({
+                        user: user,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        email: user.email,
+                        city: user.city,
+                        usState: user.state
+                    }))
+        }
+    }
 
         handleSubmit(event) {
             var api_key = '79e466f7a9238673f5bc113d0cab3177';
@@ -86,7 +121,7 @@ class ResultsPage extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <TopNav/>
+                <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
                 <div id="backColor">
                 <div> &nbsp;
                 </div>

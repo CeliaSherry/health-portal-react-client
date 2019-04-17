@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import "./TopNav.css"
 
-const TopNav = ({}) =>
+const TopNav = ({loggedIn, user}) =>
     <div>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             <button className="navbar-toggler" type="button" data-toggle="collapse">
@@ -29,11 +29,14 @@ const TopNav = ({}) =>
                         </a>
                     </li>
                 </ul>
-                <Link to={`/login`}>
+                <Link to={`/login`} style={{display: loggedIn ? 'none' : 'block'}}>
                     <button className="btn btn-primary pull-right" type="button">
                         Login
                     </button>
                 </Link>
+                <li id="navText" style={{display: loggedIn ? 'block' : 'none'}} className="nav-item pull-right">
+                    Hello {user.username}
+                </li>
             </div>
         </nav>
 

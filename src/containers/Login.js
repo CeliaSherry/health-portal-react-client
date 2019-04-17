@@ -11,7 +11,10 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-            loggedIn: false
+            loggedIn: false,
+            user: {
+                username: ''
+            }
         };
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -56,7 +59,7 @@ class Login extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <TopNav/>
+                <TopNav loggedIn={false} user={this.state.user}/>
                 <div id="backColor">
                 <h1>
                     Login

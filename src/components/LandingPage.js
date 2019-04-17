@@ -16,7 +16,10 @@ class LandingPage extends React.Component {
         this.state = {
             articles: [],
             loggedIn: false,
-            specialArticles: []
+            specialArticles: [],
+            user: {
+                username: ''
+            }
         }
     }
 
@@ -228,7 +231,7 @@ class LandingPage extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <TopNav/>
+                <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
                 <div id="backColor">
                 <h1 className="d-flex justify-content-center">
                     Health Portal

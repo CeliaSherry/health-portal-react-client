@@ -26,7 +26,10 @@ class PersonalProfile extends React.Component {
             city: '',
             usState: '',
             role: '',
-            articles: []
+            articles: [],
+            user: {
+                username: ''
+            }
         }
 
         this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -208,7 +211,7 @@ class PersonalProfile extends React.Component {
 
 
     renderData() {
-        if (this.state.user) {
+        if (this.state.user.username != '') {
             return (
                 <div>
                     <h1>Profile</h1>
@@ -305,7 +308,7 @@ class PersonalProfile extends React.Component {
                 </div>
             )
         }
-        if (!(this.state.user)) {
+        if (this.state.user.username == '') {
             return (
                 <h1>
                     Log in to See Profile.
@@ -394,7 +397,7 @@ class PersonalProfile extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <TopNav/>
+                <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
                 <div id="backColor">
                 {this.renderData()}
                     <div>&nbsp;</div>

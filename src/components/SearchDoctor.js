@@ -2,17 +2,52 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import TopNav from "./TopNav";
 import "./SearchDoctor.css";
+import UserService from "../services/UserService";
 
 class SearchDoctor extends Component {
 
     constructor() {
         super();
+        this.userService = UserService.getInstance();
         this.state = {
             usState: '',
-            usCity: ''
+            usCity: '',
+            user: {
+                username: ''
+            },
+            loggedIn: false
         };
         this.handleStateChange = this.handleStateChange.bind(this);
         this.handleCityChange = this.handleCityChange.bind(this);
+    }
+
+    componentDidUpdate = () => {
+        if (this.state.loggedIn == false) {
+            this.loggedIn();
+        }
+    }
+
+    loggedIn = () =>
+        this.userService.loggedIn()
+            .then(boolean =>
+                this.setState({
+                    loggedIn: boolean
+                }))
+            .then(() => this.loggedInUser())
+
+    loggedInUser = () => {
+        if (this.state.loggedIn == true) {
+            this.userService.loggedInUser()
+                .then(user =>
+                    this.setState({
+                        user: user,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        email: user.email,
+                        city: user.city,
+                        usState: user.state
+                    }))
+        }
     }
 
     handleStateChange(event) {
@@ -36,7 +71,7 @@ class SearchDoctor extends Component {
         return (
             <div>
                 <div className="container-fluid">
-                    <TopNav/>
+                    <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
                     <div id="backColor">
                     <h1>
                         Search For Doctors

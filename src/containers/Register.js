@@ -3,6 +3,7 @@ import TopNav from "../components/TopNav";
 import {Link} from "react-router-dom";
 import CustomerService from "../services/CustomerService";
 import ProviderService from "../services/ProviderService";
+import UserService from "../services/UserService";
 
 class Register extends React.Component {
 
@@ -10,6 +11,7 @@ class Register extends React.Component {
         super(props);
         this.customerService = CustomerService.getInstance();
         this.providerService = ProviderService.getInstance();
+        this.userService = UserService.getInstance();
         this.state = {
             username: '',
             password: '',
@@ -19,7 +21,10 @@ class Register extends React.Component {
             email: '',
             city: '',
             usState: '',
-            role: 'CUS'
+            role: 'CUS',
+            user: {
+                username: ''
+            }
         };
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -153,7 +158,7 @@ class Register extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <TopNav/>
+                <TopNav loggedIn={false} user={this.state.user}/>
                 <div id="backColor">
                 <h1>
                     Register
