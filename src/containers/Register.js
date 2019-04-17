@@ -14,12 +14,22 @@ class Register extends React.Component {
             username: '',
             password: '',
             verifyPassword: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            city: '',
+            usState: '',
             role: 'CUS'
         };
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.verifyPasswordChange = this.verifyPasswordChange.bind(this);
         this.handleRoleChange = this.handleRoleChange.bind(this);
+        this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+        this.handleLastNameChange = this.handleLastNameChange.bind(this);
+        this.handleEmailNameChange = this.handleEmailNameChange.bind(this);
+        this.handleCityNameChange = this.handleCityNameChange.bind(this);
+        this.handleStateNameChange = this.handleStateNameChange.bind(this);
     }
 
     handleUsernameChange(event) {
@@ -53,22 +63,79 @@ class Register extends React.Component {
             });
     }
 
+    handleFirstNameChange(event) {
+        this.setState(
+            {
+                firstName: event.target.value
+            }
+        );
+    }
+
+    handleLastNameChange(event) {
+        this.setState(
+            {
+                lastName: event.target.value
+            }
+        );
+    }
+
+    handleEmailNameChange(event) {
+        this.setState(
+            {
+                email: event.target.value
+            }
+        );
+    }
+
+    handleCityNameChange(event) {
+        this.setState(
+            {
+                city: event.target.value
+            }
+        );
+    }
+
+    handleStateNameChange(event) {
+        this.setState(
+            {
+                usState: event.target.value
+            }
+        );
+    }
+
     register = () => {
         const username = this.state.username;
         const password = this.state.password;
         const verifyPassword = this.state.verifyPassword;
+        const firstName = this.state.firstName;
+        const lastName = this.state.lastName;
+        const email = this.state.email;
+        const city = this.state.city;
+        const usState = this.state.usState;
         const role = this.state.role;
         if(password == verifyPassword) {
             let newUser = {
                 username: username,
-                password: password
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                city: city,
+                state: usState
 
             }
             if(role == 'CUS'){
                  this.customerService
                      .register(newUser)
                      .then(user =>
-                         this.setState({user: user})
+                         this.setState({
+                             user: user,
+                             firstName: user.firstName,
+                             lastName: user.lastName,
+                             email: user.email,
+                             city: user.city,
+                             usState: user.state
+                         })
                      );
             } else {
                 this.providerService
@@ -129,6 +196,67 @@ class Register extends React.Component {
                                    placeholder="!@#$QWERzxc"
                                    value={this.state.verifyPassword}
                                    onChange={this.verifyPasswordChange}/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="firstName"
+                               className="col-sm-2">
+                            First Name
+                        </label>
+                        <div className="col-sm-10">
+                            <input className="form-control"
+                                   value={this.state.firstName}
+                                   onChange={this.handleFirstNameChange}
+                                   id="firstName"/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="lastName"
+                               className="col-sm-2">
+                            Last Name
+                        </label>
+                        <div className="col-sm-10">
+                            <input className="form-control"
+                                   value={this.state.lastName}
+                                   onChange={this.handleLastNameChange}
+                                   id="lastName"/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="email"
+                               className="col-sm-2">
+                            Email
+                        </label>
+                        <div className="col-sm-10">
+                            <input className="form-control"
+                                   type="email"
+                                   value={this.state.email}
+                                   onChange={this.handleEmailNameChange}
+                                   id="email"/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="city"
+                               className="col-sm-2">
+                            City
+                        </label>
+                        <div className="col-sm-10">
+                            <input className="form-control"
+                                   value={this.state.city}
+                                   onChange={this.handleCityNameChange}
+                                   id="city"/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="usState"
+                               className="col-sm-2">
+                            State
+                        </label>
+                        <div className="col-sm-10">
+                            <input className="form-control"
+                                   value={this.state.usState}
+                                   onChange={this.handleStateNameChange}
+                                   id="usState"/>
                         </div>
                     </div>
                     <div className="form-group row">

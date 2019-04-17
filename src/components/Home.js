@@ -20,7 +20,6 @@ import UserService from "../services/UserService";
 /*
 TODO:
 -Modularize everything
--Update CSS and styling, foreground and background coloring
 -Populate dummy data
 -Figure out when to save provider info in database
 -Still redirected if incorrect username/password, still redirected if passwords don't match
