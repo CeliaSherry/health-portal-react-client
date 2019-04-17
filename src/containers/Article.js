@@ -55,6 +55,7 @@ class Article extends React.Component {
         const articleId = this.state.articleId;
         this.customerService
             .favorite(customerId, articleId)
+            .then(() => this.findArticleById())
     }
 
     loggedInUser = () => {
