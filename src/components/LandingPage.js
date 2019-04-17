@@ -89,7 +89,7 @@ class LandingPage extends React.Component {
         this.articleService.findArticlesForProvider(providerId)
             .then(articles =>
                 this.setState({
-                    spacialArticles: articles
+                    specialArticles: articles
                 }))
     }
 
@@ -169,7 +169,7 @@ class LandingPage extends React.Component {
             )
         } else if (this.state.role == 'PRO') {
             var items;
-            items = this.state.spacialArticles
+            items = this.state.specialArticles
                 .map(function (item, index) {
                     return <tr key={index}>
                         <td>

@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2041e76d-a960-44e6-8aec-b8b7d79c4bb8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Article.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Article.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/PersonalProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PersonalProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/ArticleService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ArticleService.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/Article.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="114" column="23" lean-forward="true" selection-start-line="114" selection-start-column="23" selection-end-line="114" selection-end-column="23" />
+            <state relative-caret-position="303">
+              <caret line="155" column="22" selection-start-line="155" selection-start-column="22" selection-end-line="155" selection-end-column="22" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -93,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/LandingPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="31" column="20" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="20" />
+            <state relative-caret-position="125">
+              <caret line="166" column="26" lean-forward="true" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -117,8 +115,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/PersonalProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="35" column="75" selection-start-line="35" selection-start-column="75" selection-end-line="35" selection-end-column="75" />
+            <state relative-caret-position="-1517">
+              <caret line="128" column="23" lean-forward="true" selection-start-line="128" selection-start-column="23" selection-end-line="128" selection-end-column="23" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -166,7 +164,10 @@
       <find>this.article</find>
       <find>log in</find>
       <find>this.articleservice</find>
+      <find>edit</find>
       <find>link</find>
+      <find>this.setstate</find>
+      <find>findarticlebyid</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,10 +195,10 @@
         <option value="$PROJECT_DIR$/src/containers/UserProfile.js" />
         <option value="$PROJECT_DIR$/src/services/UserService.js" />
         <option value="$PROJECT_DIR$/src/containers/PersonalProfile.css" />
-        <option value="$PROJECT_DIR$/src/components/LandingPage.js" />
         <option value="$PROJECT_DIR$/src/services/ArticleService.js" />
         <option value="$PROJECT_DIR$/src/components/Home.js" />
         <option value="$PROJECT_DIR$/src/containers/PersonalProfile.js" />
+        <option value="$PROJECT_DIR$/src/components/LandingPage.js" />
         <option value="$PROJECT_DIR$/src/containers/Article.js" />
       </list>
     </option>
@@ -287,12 +288,12 @@
       <option name="presentableId" value="Default" />
       <updated>1553370000100</updated>
       <workItem from="1553370002129" duration="5611000" />
-      <workItem from="1555017741655" duration="44390000" />
+      <workItem from="1555017741655" duration="45922000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50001000" />
+    <option name="totallyTimeSpent" value="51533000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="11" y="23" width="1400" height="769" extended-state="0" />
@@ -487,32 +488,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/LandingPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="31" column="20" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="87" selection-start-line="26" selection-start-column="87" selection-end-line="26" selection-end-column="87" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/PersonalProfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="35" column="75" selection-start-line="35" selection-start-column="75" selection-end-line="35" selection-end-column="75" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -527,10 +508,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/LandingPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="166" column="26" lean-forward="true" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/PersonalProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1517">
+          <caret line="128" column="23" lean-forward="true" selection-start-line="128" selection-start-column="23" selection-end-line="128" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/Article.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="114" column="23" lean-forward="true" selection-start-line="114" selection-start-column="23" selection-end-line="114" selection-end-column="23" />
+        <state relative-caret-position="303">
+          <caret line="155" column="22" selection-start-line="155" selection-start-column="22" selection-end-line="155" selection-end-column="22" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>

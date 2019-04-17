@@ -16,8 +16,13 @@ class Article extends React.Component {
         this.providerService = ProviderService.getInstance();
         this.state = {
             articleId: this.props.match.params.articleId,
-            loggedIn: false
+            loggedIn: false,
+            editMode: false,
+            title: '',
+            text: ''
         }
+        this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleTextChange = this.handleTextChange.bind(this);
     }
 
     componentDidMount = () =>
@@ -27,6 +32,22 @@ class Article extends React.Component {
         if (this.state.loggedIn == false) {
             this.loggedIn();
         }
+    }
+
+    handleTitleChange(event) {
+        this.setState(
+            {
+                title: event.target.value
+            }
+        );
+    }
+
+    handleTextChange(event) {
+        this.setState(
+            {
+                text: event.target.value
+            }
+        );
     }
 
     favoriteArticle = () => {
@@ -101,15 +122,46 @@ class Article extends React.Component {
         this.articleService.findArticleById(aid)
             .then(article =>
                 this.setState({
-                    article: article
+                    article: article,
+                    title: article.title,
+                    text: article.text
                 }))
             .then(() => this.articleService.findFavoritedCustomers(aid)
                 .then(customers =>
                     this.setState({
                         customers: customers
                     })))
-            .then(() => console.log(this.state.customers))
     }
+
+    editMode = () => {
+        this.setState({
+            editMode: true
+        })
+    }
+
+    updateArticle = () => {
+        const title = this.state.title;
+        const text = this.state.text;
+        const articleId = this.state.articleId
+        let newArticle = {
+            title: title,
+            text: text
+        }
+
+        this.articleService.updateArticle(articleId, newArticle)
+            .then(article =>
+                this.setState({
+                    article: article,
+                    title: article.title,
+                    text: article.text,
+                    editMode: false
+                })
+            )
+            .then(() => this.findArticleById())
+
+
+    }
+
 
     deleteArticle = () => {
         const articleId = this.state.articleId;
@@ -167,7 +219,54 @@ class Article extends React.Component {
                 <div></div>
             )
         }
+    }
 
+    renderEditData() {
+        if (this.state.customers) {
+            return (
+                <div>
+                    <h1>
+                        Edit Article
+                    </h1>
+                    <form>
+                        <div className="form-group row">
+                            <label htmlFor="title"
+                                   className="col-sm-2">
+                                Title
+                            </label>
+                            <div className="col-sm-10">
+                                <input className="form-control"
+                                       value={this.state.title}
+                                       onChange={this.handleTitleChange}
+                                       id="title"/>
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                            <label htmlFor="text"
+                                   className="col-sm-2">
+                                Article Text
+                            </label>
+                            <div className="col-sm-10">
+                                <input className="form-control"
+                                       value={this.state.text}
+                                       onChange={this.handleTextChange}
+                                       id="firstName"/>
+                            </div>
+                        </div>
+                    </form>
+                    <a onClick={() => this.updateArticle()}>
+                        <button className="btn btn-success">Save</button>
+                    </a>
+
+
+                </div>
+            )
+        }
+        if (!(this.state.article)) {
+            return (
+                <div></div>
+            )
+        }
     }
 
     renderCustomerData() {
@@ -194,7 +293,9 @@ class Article extends React.Component {
             return (
                 <div>
                     <div className="btn-group" role="group" aria-label="Basic example">
+                        <a onClick={() => this.editMode()}>
                         <button type="button" className="btn btn-primary">Edit</button>
+                        </a>
                         <Link onClick={() => this.deleteArticle()} to="/profile">
                         <button type="button" className="btn btn-danger">Delete</button>
                         </Link>
@@ -213,8 +314,9 @@ class Article extends React.Component {
         return (
             <div className="container-fluid">
                 <TopNav/>
-                {this.renderData()}
-                {this.renderProviderData()}
+                {!this.state.editMode && this.renderData()}
+                {this.state.editMode && this.renderEditData()}
+                {!this.state.editMode && this.renderProviderData()}
                 {this.renderCustomerData()}
             </div>
         )
