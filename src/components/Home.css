@@ -3,4 +3,18 @@ body {
     background-color: ghostwhite;
 }
 
+h2{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+#articleText{
+    text-align: center;
+}
+
+h6{
+    text-align: center;
+    padding-bottom: 15px;
+}
 

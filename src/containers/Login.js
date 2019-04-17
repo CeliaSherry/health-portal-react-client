@@ -57,6 +57,7 @@ class Login extends React.Component {
         return (
             <div className="container-fluid">
                 <TopNav/>
+                <div id="backColor">
                 <h1>
                     Login
                 </h1>
@@ -112,6 +113,7 @@ class Login extends React.Component {
                         </div>
                     </div>
                 </form>
+            </div>
             </div>
         )
     }

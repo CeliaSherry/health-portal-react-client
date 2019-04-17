@@ -87,6 +87,7 @@ class ResultsPage extends Component {
         return (
             <div className="container-fluid">
                 <TopNav/>
+                <div id="backColor">
                 <div> &nbsp;
                 </div>
                 <h2>
@@ -98,6 +99,7 @@ class ResultsPage extends Component {
                     </Link>
                 </h2>
                 {this.renderDoctors()}
+            </div>
             </div>
         )
     }

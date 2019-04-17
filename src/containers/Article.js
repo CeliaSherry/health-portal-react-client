@@ -124,7 +124,6 @@ class Article extends React.Component {
                 this.setState({
                     author: author
                 }))
-            .then(() => console.log(this.state.author))
     }
 
 
@@ -201,15 +200,22 @@ class Article extends React.Component {
         if (this.state.customers) {
             return (
                 <div>
-                    <h1>
+                    <h2>
                         {this.state.article.title}
-                    </h1>
-                    <h4>
+                    </h2>
+                    <h6>
+                        {this.renderAuthorData()}
+                    </h6>
+                    <h6>
+                        {this.renderCustomerData()}
+                    </h6>
+                    <h3>
                         {this.state.article.date}
-                    </h4>
-                    <p>
+                    </h3>
+                    <p id="articleText">
                         {this.state.article.text}
                     </p>
+                    {!this.state.editMode && this.renderProviderData()}
                     <div>&nbsp;</div>
                     <div className="table-responsive">
                         <table className="table table-hover">
@@ -237,9 +243,9 @@ class Article extends React.Component {
         if (this.state.customers) {
             return (
                 <div>
-                    <h1>
+                    <h2>
                         Edit Article
-                    </h1>
+                    </h2>
                     <form>
                         <div className="form-group row">
                             <label htmlFor="title"
@@ -284,21 +290,32 @@ class Article extends React.Component {
         }
     }
 
+    renderAuthorData() {
+        if(this.state.author && this.state.role=='CUS'){
+            return (
+                <div>
+                    <Link to={`/profile/${this.state.author.id}`}>
+                        <i className="fa fa-user">&nbsp;</i>
+                        {this.state.author.firstName} {this.state.author.lastName}
+                    </Link>
+                </div>
+            ) } else {
+                return (
+                    <div>
+                    </div>
+                )
+            }
+
+    }
+
     renderCustomerData() {
         if (this.state.role == 'CUS' && this.state.author) {
             return (
                 <div>
                     <a onClick={() => this.favoriteArticle()}>
-                        Favorite: &nbsp;
-                        <i className="fa fa-thumbs-up fa-4x">&nbsp;</i>
+                        <i className="fa fa-thumbs-up fa-2x">&nbsp;</i>
+                        Like
                     </a>
-                    <div>
-                   <Link to={`/profile/${this.state.author.id}`}>
-                       Author: &nbsp;
-                            <i className="fa fa-user">&nbsp;</i>
-                            {this.state.author.firstName} {this.state.author.lastName}
-                    </Link>
-                    </div>
                 </div>
             )
         } else {
@@ -336,10 +353,10 @@ class Article extends React.Component {
         return (
             <div className="container-fluid">
                 <TopNav/>
+                <div id="backColor">
                 {!this.state.editMode && this.renderData()}
                 {this.state.editMode && this.renderEditData()}
-                {!this.state.editMode && this.renderProviderData()}
-                {this.renderCustomerData()}
+                </div>
             </div>
         )
     }

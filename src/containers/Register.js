@@ -87,6 +87,7 @@ class Register extends React.Component {
         return (
             <div className="container-fluid">
                 <TopNav/>
+                <div id="backColor">
                 <h1>
                     Register
                 </h1>
@@ -169,6 +170,7 @@ class Register extends React.Component {
                         </div>
                     </div>
                 </form>
+            </div>
             </div>
         )
     }

@@ -395,8 +395,11 @@ class PersonalProfile extends React.Component {
         return (
             <div className="container-fluid">
                 <TopNav/>
+                <div id="backColor">
                 {this.renderData()}
+                    <div>&nbsp;</div>
                 {this.renderRoleData()}
+                </div>
             </div>
         )
     }

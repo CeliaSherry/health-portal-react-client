@@ -153,11 +153,13 @@ class UserProfile extends React.Component {
         return (
             <div className="container-fluid">
                 <TopNav/>
+                <div id="backColor">
                 <h1>
                     Profile
                 </h1>
                 {this.renderData()}
                 {this.renderRoleData()}
+            </div>
             </div>
         )
     }

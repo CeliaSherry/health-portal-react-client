@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import TopNav from "./TopNav";
+import "./SearchDoctor.css";
 
 class SearchDoctor extends Component {
 
@@ -36,9 +37,11 @@ class SearchDoctor extends Component {
             <div>
                 <div className="container-fluid">
                     <TopNav/>
+                    <div id="backColor">
                     <h1>
                         Search For Doctors
                     </h1>
+                        <div>&nbsp;</div>
                     <div className="form-group row">
                         <label className="col-sm-2"
                                htmlFor="city">
@@ -128,6 +131,7 @@ class SearchDoctor extends Component {
                             </Link>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         )

@@ -9,7 +9,7 @@ const TopNav = ({}) =>
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse">
-                <a className="navbar-brand" href="#">
+                <a className="navbar-brand" href="/">
                     Health Portal
                 </a>
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0">

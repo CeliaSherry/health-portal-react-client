@@ -1,0 +1,25 @@
+#backColor {
+    background-color: ghostwhite;
+    border-left: gainsboro;
+    border-right: gainsboro;
+    border-bottom: gainsboro;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-width: thin;
+    border-right-width: thin;
+    border-bottom-width: thin;
+}
+
+
+
+h1{
+    padding-top: 15px;
+    text-align: center;
+    border-bottom: gainsboro;
+    border-bottom-style: solid;
+    padding-bottom: 15px;
+}
