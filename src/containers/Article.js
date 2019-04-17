@@ -117,6 +117,16 @@ class Article extends React.Component {
                 }))
             .then(() => this.loggedInUser())
 
+    findAuthor = () => {
+        const aid = this.state.articleId;
+        this.articleService.findAuthor(aid)
+            .then(author =>
+                this.setState({
+                    author: author
+                }))
+            .then(() => console.log(this.state.author))
+    }
+
 
     findArticleById = () => {
         var aid = this.state.articleId;
@@ -132,6 +142,7 @@ class Article extends React.Component {
                     this.setState({
                         customers: customers
                     })))
+            .then(() => this.findAuthor())
     }
 
     editMode = () => {
@@ -271,16 +282,23 @@ class Article extends React.Component {
     }
 
     renderCustomerData() {
-        if (this.state.role == 'CUS') {
+        if (this.state.role == 'CUS' && this.state.author) {
             return (
                 <div>
                     <a onClick={() => this.favoriteArticle()}>
                         Favorite: &nbsp;
                         <i className="fa fa-thumbs-up fa-4x">&nbsp;</i>
                     </a>
+                    <div>
+                   <Link to={`/profile/${this.state.author.id}`}>
+                       Author: &nbsp;
+                            <i className="fa fa-user">&nbsp;</i>
+                            {this.state.author.firstName} {this.state.author.lastName}
+                    </Link>
+                    </div>
                 </div>
             )
-        }  else {
+        } else {
             return (
                 <div>
                 </div>
@@ -295,15 +313,15 @@ class Article extends React.Component {
                 <div>
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <a onClick={() => this.editMode()}>
-                        <button type="button" className="btn btn-primary">Edit</button>
+                            <button type="button" className="btn btn-primary">Edit</button>
                         </a>
                         <Link onClick={() => this.deleteArticle()} to="/profile">
-                        <button type="button" className="btn btn-danger">Delete</button>
+                            <button type="button" className="btn btn-danger">Delete</button>
                         </Link>
                     </div>
                 </div>
             )
-        }  else {
+        } else {
             return (
                 <div>
                 </div>

@@ -56,6 +56,10 @@ class ArticleService {
         }).then(response =>
             response.json());
 
+    findAuthor = (articleId) =>
+        fetch(API_URL + "articles/" + articleId + "/provider")
+            .then(response => response.json())
+
 
 
     findFavoritedCustomers = (articleId) =>

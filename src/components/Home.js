@@ -24,9 +24,8 @@ TODO:
 -Populate dummy data
 -Figure out when to save provider info in database
 -Still redirected if incorrect username/password, still redirected if passwords don't match
--author articles/delete/update (edit toolbar at top if logged in user authored article)
 -When user registers let them have email, city, state, firstname, last name, etc.
--Should profile have provider's practice?
+-Should profile have provider's practice? ability to set practice?
  */
 
 
