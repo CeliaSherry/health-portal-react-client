@@ -17,6 +17,8 @@ class PersonalProfile extends React.Component {
         this.articleService = ArticleService.getInstance();
         this.state = {
             loggedIn: false,
+            tempUsername: '',
+            tempPassword: '',
             firstName: '',
             lastName: '',
             email: '',
@@ -56,7 +58,9 @@ class PersonalProfile extends React.Component {
                         lastName: user.lastName,
                         email: user.email,
                         city: user.city,
-                        usState: user.state
+                        usState: user.state,
+                        tempUsername: user.username,
+                        tempPassword: user.password
                     }))
                 .then(() => this.getRole(this.state.user.id))
         }
@@ -96,8 +100,8 @@ class PersonalProfile extends React.Component {
     }
 
     login = () => {
-        const username = this.state.username;
-        const password = this.state.password;
+        const username = this.state.tempUsername;
+        const password = this.state.tempPassword;
         let newUser = {
             username: username,
             password: password
