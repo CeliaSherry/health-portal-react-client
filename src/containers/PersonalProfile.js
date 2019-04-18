@@ -23,7 +23,6 @@ class PersonalProfile extends React.Component {
             city: '',
             usState: '',
             role: '',
-            test: 1,
             articles: [],
             user: {
                 username: ''
@@ -48,7 +47,7 @@ class PersonalProfile extends React.Component {
     }
 
     loggedInUser = () => {
-        if (this.state.loggedIn == true && this.state.test == 1) {
+        if (this.state.loggedIn == true) {
             this.userService.loggedInUser()
                 .then(user =>
                     this.setState({
@@ -57,8 +56,7 @@ class PersonalProfile extends React.Component {
                         lastName: user.lastName,
                         email: user.email,
                         city: user.city,
-                        usState: user.state,
-                        test: 2
+                        usState: user.state
                     }))
                 .then(() => this.getRole(this.state.user.id))
         }
@@ -95,6 +93,25 @@ class PersonalProfile extends React.Component {
                 this.setState({
                     articles: articles
                 }))
+    }
+
+    login = () => {
+        const username = this.state.username;
+        const password = this.state.password;
+        let newUser = {
+            username: username,
+            password: password
+        }
+        this.userService
+            .login(newUser)
+            .then(user =>
+                this.setState(
+                    {
+                        user: user,
+                    }))
+            .then(() => this.setState({
+                loggedIn: true
+            }))
     }
 
 
@@ -150,8 +167,8 @@ class PersonalProfile extends React.Component {
                     usState: user.state
                 })
             )
-           // .then(() => console.log(this.state.user))
-           // .then(() => this.loggedInUser())
+            .then(() => this.logout())
+            .then(() => this.login())
 
     }
 
