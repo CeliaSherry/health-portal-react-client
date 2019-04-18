@@ -149,8 +149,8 @@ class PersonalProfile extends React.Component {
                     usState: user.state
                 })
             )
-            .then(() => console.log(this.state.user))
-            .then(() => this.loggedInUser())
+           // .then(() => console.log(this.state.user))
+           // .then(() => this.loggedInUser())
 
     }
 
