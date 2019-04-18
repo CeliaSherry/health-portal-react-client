@@ -13,6 +13,10 @@ i{
     color: lightslategray;
 }
 
+#title{
+    background-color: lavender;
+}
+
 thead {
     background-color: lavender;
 }

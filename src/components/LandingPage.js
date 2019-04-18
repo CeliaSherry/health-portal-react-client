@@ -5,6 +5,8 @@ import ArticleService from "../services/ArticleService";
 import CustomerService from "../services/CustomerService";
 import UserService from "../services/UserService";
 import "./LandingPage.css";
+import ArticleItem from "./ArticleItem";
+import ArticleCard from "./ArticleCard";
 
 class LandingPage extends React.Component {
 
@@ -103,29 +105,9 @@ class LandingPage extends React.Component {
         if (this.state.articles) {
             articles = this.state.articles
                 .map(function (item, index) {
-                    return <div className="col-lg-4 col-md-4 col-sm-6">
-                    <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">{item.title}</h5>
-                                    <p className="card-text">
-                                        {item.text}
-                                    </p>
-                                <Link to={`/article/${item.id}`}>
-                                    <button className="btn btn-primary">See Article</button>
-                                </Link>
-                            </div>
-                    </div>
-                    </div>
-                    {/*                    <tr key={index}>
-                            <td>
-                                <Link to={`/article/${item.id}`}>
-                                    <i className="fa fa-file">&nbsp;</i>
-                                    {item.title}
-                                </Link>
-                            </td>
-                        </tr>*/
-                    }
-
+                    return <ArticleCard id={item.id}
+                        title={item.title}
+                        text={item.text}/>
                 });
         }
         if (this.state.articles) {
@@ -134,17 +116,6 @@ class LandingPage extends React.Component {
                     <h4>Popular Articles</h4>
                     <div className="card-deck">
                         {articles}
-                        {/*                    <div className="table-responsive">
-                        <table className="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>Popular Articles</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {articles}
-                            </tbody>
-                        </table>*/}
                     </div>
                     <div>&nbsp;</div>
                 </div>
@@ -163,14 +134,9 @@ class LandingPage extends React.Component {
             var items;
             items = this.state.specialArticles
                 .map(function (item, index) {
-                    return <tr key={index}>
-                        <td>
-                            <Link to={`/article/${item.id}`}>
-                                <i className="fa fa-file">&nbsp;</i>
-                                {item.title}
-                            </Link>
-                        </td>
-                    </tr>
+                    return <ArticleItem key={index}
+                                        id={item.id}
+                                        title={item.title}/>
                 })
 
             return (
@@ -193,14 +159,9 @@ class LandingPage extends React.Component {
             var items;
             items = this.state.specialArticles
                 .map(function (item, index) {
-                    return <tr key={index}>
-                        <td>
-                            <Link to={`/article/${item.id}`}>
-                                <i className="fa fa-file">&nbsp;</i>
-                                {item.title}
-                            </Link>
-                        </td>
-                    </tr>
+                    return <ArticleItem key={index}
+                                        id={item.id}
+                                        title={item.title}/>
                 })
 
             return (
@@ -233,15 +194,16 @@ class LandingPage extends React.Component {
             <div className="container-fluid">
                 <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
                 <div id="backColor">
-                <h1 className="d-flex justify-content-center">
+                <h1 className="d-flex justify-content-center" id="title">
                     Health Portal
                 </h1>
                 <p id="intro" className="d-flex justify-content-center">
                     This website is devoted to giving you the most accurate information about your health care questions
-                    available.
-                    Search for providers and view articles they have authored. Read and save articles for later
-                    reference. Our goal
-                    is to provide clarity in the confusing field of healthcare.
+                    available.  Providers write articles about their specialties that you can read and favorite to view
+                    at your convenience.  Search for practices in your area and view articles written by providers in these
+                    practices.  Contact information is provided to make booking an appointment easy.  View a provider's
+                    profile to see other articles they have written and a user's profile to see other articles they have liked.
+                    Our goal is to provide clarity in the confusing field of health care.
                 </p>
                 {this.renderData()}
                 {this.renderRoleData()}

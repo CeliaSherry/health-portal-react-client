@@ -326,7 +326,8 @@ class Article extends React.Component {
 
 
     renderProviderData() {
-        if (this.state.role == 'PRO') {
+        if(this.state.author) {
+        if (this.state.role == 'PRO' && this.state.author.username == this.state.user.username) {
             return (
                 <div>
                     <div className="btn-group" role="group" aria-label="Basic example">
@@ -339,7 +340,7 @@ class Article extends React.Component {
                     </div>
                 </div>
             )
-        } else {
+        }} else {
             return (
                 <div>
                 </div>
