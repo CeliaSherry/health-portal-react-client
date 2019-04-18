@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import React from "react";
 
 //const API_URL = 'http://localhost:8080/api/'
-const API_URL= 'https://cryptic-sea-99383.herokuapp.com/api/'
+const API_URL = 'https://cryptic-sea-99383.herokuapp.com/api/'
 
 class ArticleService {
 
@@ -16,7 +16,10 @@ class ArticleService {
     }
 
     findAllArticles = () =>
-        fetch(API_URL + "articles")
+        fetch(API_URL + "articles", {
+            method: 'GET',
+            credentials: 'include'
+        })
             .then(response => response.json());
 
     findArticleById = (articleId) =>
@@ -60,7 +63,6 @@ class ArticleService {
     findAuthor = (articleId) =>
         fetch(API_URL + "articles/" + articleId + "/provider")
             .then(response => response.json())
-
 
 
     findFavoritedCustomers = (articleId) =>
