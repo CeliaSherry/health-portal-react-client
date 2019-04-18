@@ -97,7 +97,9 @@ class UserService {
             headers: {
                 'content-type': 'application/json'
             }
-        });
+        }).then(response =>
+            response.json()
+        );
     }
 
 
