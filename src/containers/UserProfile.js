@@ -15,7 +15,7 @@ class UserProfile extends React.Component {
         this.providerService = ProviderService.getInstance();
         this.articleService = ArticleService.getInstance();
         this.state = {
-            user: {
+            loggedInUser: {
                 username: ''
             },
             loggedIn: false,
@@ -43,14 +43,14 @@ class UserProfile extends React.Component {
     loggedInUser = () => {
         if (this.state.loggedIn == true) {
             this.userService.loggedInUser()
-                .then(user =>
+                .then(loggedInUser =>
                     this.setState({
-                        user: user,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        email: user.email,
-                        city: user.city,
-                        usState: user.state
+                        loggedInUser: loggedInUser,
+                        firstName: loggedInUser.firstName,
+                        lastName: loggedInUser.lastName,
+                        email: loggedInUser.email,
+                        city: loggedInUser.city,
+                        usState: loggedInUser.state
                     }))
         }
     }
@@ -184,7 +184,7 @@ class UserProfile extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
+                <TopNav loggedIn={this.state.loggedIn} user={this.state.loggedInUser}/>
                 <div id="backColor">
                 <h1>
                     Profile

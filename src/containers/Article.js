@@ -5,6 +5,9 @@ import {Link} from "react-router-dom";
 import UserService from "../services/UserService";
 import CustomerService from "../services/CustomerService";
 import ProviderService from "../services/ProviderService";
+import ProfileItem from "../components/ProfileItem";
+import AuthorProfileItem from "../components/AuthorProfileItem";
+
 
 class Article extends React.Component {
 
@@ -190,14 +193,11 @@ class Article extends React.Component {
         if (this.state.customers) {
             items = this.state.customers
                 .map(function (item, index) {
-                    return <tr key={index}>
-                        <Link to={`/profile/${item.id}`}>
-                            <td>
-                                <i className="fa fa-thumbs-up">&nbsp;</i>
-                                {item.username} in {item.city}, {item.state}
-                            </td>
-                        </Link>
-                    </tr>
+                    return <ProfileItem key={index}
+                                        id={item.id}
+                                        username={item.username}
+                                        city={item.city}
+                                        state={item.state}/>
                 });
         }
         if (this.state.customers) {
@@ -269,10 +269,10 @@ class Article extends React.Component {
                             </label>
                             <div className="col-sm-10">
                                 <textarea className="form-control"
-                                       value={this.state.text}
-                                       onChange={this.handleTextChange}
-                                       rows="4"
-                                       id="text">
+                                          value={this.state.text}
+                                          onChange={this.handleTextChange}
+                                          rows="4"
+                                          id="text">
                                 </textarea>
 
                             </div>
@@ -294,20 +294,15 @@ class Article extends React.Component {
     }
 
     renderAuthorData() {
-        if(this.state.author && this.state.role=='CUS'){
+        if (this.state.author && this.state.role == 'CUS') {
+            return <AuthorProfileItem
+                author={this.state.author}/>
+        } else {
             return (
                 <div>
-                    <Link to={`/profile/${this.state.author.id}`}>
-                        <i className="fa fa-user">&nbsp;</i>
-                        {this.state.author.firstName} {this.state.author.lastName}
-                    </Link>
                 </div>
-            ) } else {
-                return (
-                    <div>
-                    </div>
-                )
-            }
+            )
+        }
 
     }
 
@@ -357,8 +352,8 @@ class Article extends React.Component {
             <div className="container-fluid">
                 <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
                 <div id="backColor">
-                {!this.state.editMode && this.renderData()}
-                {this.state.editMode && this.renderEditData()}
+                    {!this.state.editMode && this.renderData()}
+                    {this.state.editMode && this.renderEditData()}
                 </div>
             </div>
         )

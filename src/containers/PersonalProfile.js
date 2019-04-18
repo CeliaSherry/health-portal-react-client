@@ -10,11 +10,6 @@ import ArticleItem from "../components/ArticleItem";
 
 class PersonalProfile extends React.Component {
 
-    /*constructor(props) {
-        super(props);
-        console.log(this.props.location.state.loggedIn)
-    }*/
-
     constructor(props) {
         super(props);
         this.userService = UserService.getInstance();
@@ -50,7 +45,6 @@ class PersonalProfile extends React.Component {
             this.loggedIn();
         }
     }
-    //     this.loggedIn();
 
     loggedInUser = () => {
         if (this.state.loggedIn == true) {
@@ -327,15 +321,6 @@ class PersonalProfile extends React.Component {
                     return <ArticleItem key={index}
                                         id={item.id}
                                         title={item.title}/>
-                    {/*                    return <tr key={index}>
-                        <td>
-                            <Link to={`/article/${item.id}`}>
-                                <i className="fa fa-file">&nbsp;</i>
-                                {item.title}
-                            </Link>
-                        </td>
-                    </tr>*/
-                    }
                 })
 
             return (
@@ -358,14 +343,9 @@ class PersonalProfile extends React.Component {
             var items;
             items = this.state.articles
                 .map(function (item, index) {
-                    return <tr key={index}>
-                        <td>
-                            <Link to={`/article/${item.id}`}>
-                                <i className="fa fa-file">&nbsp;</i>
-                                {item.title}
-                            </Link>
-                        </td>
-                    </tr>
+                    return <ArticleItem key={index}
+                                        id={item.id}
+                                        title={item.title}/>
                 })
             return (
                 <div>

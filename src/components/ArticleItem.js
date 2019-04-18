@@ -11,7 +11,7 @@ class ArticleItem extends React.Component {
         return (
                 <tr key={this.props.index}>
                 <td>
-                    <Link to={`/article/${this.props.key}`}>
+                    <Link to={`/article/${this.props.id}`}>
                         <i className="fa fa-file">&nbsp;</i>
                         {this.props.title}
                     </Link>
