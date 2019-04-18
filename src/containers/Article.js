@@ -294,7 +294,7 @@ class Article extends React.Component {
     }
 
     renderAuthorData() {
-        if (this.state.author && this.state.role == 'CUS') {
+        if (this.state.author) {
             return <AuthorProfileItem
                 author={this.state.author}/>
         } else {

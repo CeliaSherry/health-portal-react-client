@@ -5,6 +5,7 @@ import UserService from "../services/UserService";
 import CustomerService from "../services/CustomerService";
 import ProviderService from "../services/ProviderService";
 import {Link} from "react-router-dom";
+import ArticleItem from "../components/ArticleItem";
 
 class UserProfile extends React.Component {
 
@@ -116,14 +117,9 @@ class UserProfile extends React.Component {
             var items;
             items = this.state.specialArticles
                 .map(function (item, index) {
-                    return <tr key={index}>
-                        <td>
-                            <Link to={`/article/${item.id}`}>
-                                <i className="fa fa-file">&nbsp;</i>
-                                {item.title}
-                            </Link>
-                        </td>
-                    </tr>
+                    return <ArticleItem key={index}
+                                        id={item.id}
+                                        title={item.title}/>
                 })
 
             return (
@@ -146,14 +142,9 @@ class UserProfile extends React.Component {
             var items;
             items = this.state.specialArticles
                 .map(function (item, index) {
-                    return <tr key={index}>
-                        <td>
-                            <Link to={`/article/${item.id}`}>
-                                <i className="fa fa-file">&nbsp;</i>
-                                {item.title}
-                            </Link>
-                        </td>
-                    </tr>
+                    return <ArticleItem key={index}
+                                        id={item.id}
+                                        title={item.title}/>
                 })
 
             return (
