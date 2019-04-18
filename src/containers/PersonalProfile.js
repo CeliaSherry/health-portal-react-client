@@ -58,6 +58,7 @@ class PersonalProfile extends React.Component {
                         city: user.city,
                         usState: user.state
                     }))
+                .then(() => console.log(this.state.user))
                 .then(() => this.getRole(this.state.user.id))
         }
     }
