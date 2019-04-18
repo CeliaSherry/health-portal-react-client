@@ -195,7 +195,8 @@ class PersonalProfile extends React.Component {
                     lastName: '',
                     email: '',
                     city: '',
-                    usState: ''
+                    usState: '',
+                    loggedIn: false
                 })
             );
     }
