@@ -37,8 +37,8 @@ class PersonalProfile extends React.Component {
     }
 
 
-    componentDidMount = () =>
-        this.loggedIn();
+   // componentDidMount = () =>
+   //     this.loggedIn();
 
     componentDidUpdate = () => {
         if (this.state.loggedIn == false) {
@@ -58,7 +58,6 @@ class PersonalProfile extends React.Component {
                         city: user.city,
                         usState: user.state
                     }))
-                .then(() => console.log(this.state.user))
                 .then(() => this.getRole(this.state.user.id))
         }
     }
