@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2041e76d-a960-44e6-8aec-b8b7d79c4bb8" name="Default Changelist" comment="" />
+    <list default="true" id="2041e76d-a960-44e6-8aec-b8b7d79c4bb8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/containers/PersonalProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PersonalProfile.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -16,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/PersonalProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3670">
-              <caret line="291" column="66" selection-start-line="291" selection-start-column="60" selection-end-line="291" selection-end-column="66" />
+            <state relative-caret-position="415">
+              <caret line="150" column="43" selection-start-line="150" selection-start-column="43" selection-end-line="150" selection-end-column="43" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -202,7 +204,6 @@
         <option value="$PROJECT_DIR$/src/containers/Register.js" />
         <option value="$PROJECT_DIR$/src/components/ProfileForm.js" />
         <option value="$PROJECT_DIR$/src/components/ProfileItem.js" />
-        <option value="$PROJECT_DIR$/src/containers/PersonalProfile.js" />
         <option value="$PROJECT_DIR$/src/components/ArticleItem.js" />
         <option value="$PROJECT_DIR$/src/components/AuthorProfileItem.js" />
         <option value="$PROJECT_DIR$/src/containers/UserProfile.js" />
@@ -215,6 +216,7 @@
         <option value="$PROJECT_DIR$/src/services/ProviderService.js" />
         <option value="$PROJECT_DIR$/src/services/UserService.js" />
         <option value="$PROJECT_DIR$/src/services/ArticleService.js" />
+        <option value="$PROJECT_DIR$/src/containers/PersonalProfile.js" />
       </list>
     </option>
   </component>
@@ -303,12 +305,12 @@
       <option name="presentableId" value="Default" />
       <updated>1553370000100</updated>
       <workItem from="1553370002129" duration="5611000" />
-      <workItem from="1555017741655" duration="62891000" />
+      <workItem from="1555017741655" duration="63571000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68502000" />
+    <option name="totallyTimeSpent" value="69182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="7" y="23" width="1400" height="769" extended-state="0" />
@@ -606,8 +608,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/PersonalProfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3670">
-          <caret line="291" column="66" selection-start-line="291" selection-start-column="60" selection-end-line="291" selection-end-column="66" />
+        <state relative-caret-position="415">
+          <caret line="150" column="43" selection-start-line="150" selection-start-column="43" selection-end-line="150" selection-end-column="43" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
