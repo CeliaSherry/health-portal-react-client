@@ -19,6 +19,7 @@ class PersonalProfile extends React.Component {
             loggedIn: false,
             tempUsername: '',
             tempPassword: '',
+            username: '',
             firstName: '',
             lastName: '',
             email: '',
@@ -54,6 +55,7 @@ class PersonalProfile extends React.Component {
                 .then(user =>
                     this.setState({
                         user: user,
+                        username: user.username,
                         firstName: user.firstName,
                         lastName: user.lastName,
                         email: user.email,
@@ -112,6 +114,12 @@ class PersonalProfile extends React.Component {
                 this.setState(
                     {
                         user: user,
+                        username: user.username,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        email: user.email,
+                        city: user.city,
+                        usState: user.state
                     }))
             .then(() => this.setState({
                 loggedIn: true
@@ -164,6 +172,7 @@ class PersonalProfile extends React.Component {
             .then(user =>
                 this.setState({
                     user: user,
+                    username: user.username,
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
@@ -181,6 +190,7 @@ class PersonalProfile extends React.Component {
             .then(() =>
                 this.setState({
                     user: null,
+                    username: '',
                     firstName: '',
                     lastName: '',
                     email: '',
@@ -232,7 +242,7 @@ class PersonalProfile extends React.Component {
 
 
     renderData() {
-        if (this.state.user.username != '') {
+        if (this.state.username != '') {
             return (
                 <div>
                     <h1>Profile</h1>
@@ -329,7 +339,7 @@ class PersonalProfile extends React.Component {
                 </div>
             )
         }
-        if (this.state.user.username == '') {
+        if (this.state.username == '') {
             return (
                 <h1>
                     Log in to See Profile.
