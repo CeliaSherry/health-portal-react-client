@@ -5,6 +5,8 @@ import ArticleService from "../services/ArticleService";
 import {Link} from "react-router-dom";
 import CustomerService from "../services/CustomerService";
 import "./PersonalProfile.css"
+import ArticleItem from "../components/ArticleItem";
+
 
 class PersonalProfile extends React.Component {
 
@@ -322,14 +324,18 @@ class PersonalProfile extends React.Component {
             var items;
             items = this.state.articles
                 .map(function (item, index) {
-                    return <tr key={index}>
+                    return <ArticleItem key={index}
+                                        id={item.id}
+                                        title={item.title}/>
+                    {/*                    return <tr key={index}>
                         <td>
                             <Link to={`/article/${item.id}`}>
                                 <i className="fa fa-file">&nbsp;</i>
                                 {item.title}
                             </Link>
                         </td>
-                    </tr>
+                    </tr>*/
+                    }
                 })
 
             return (
@@ -399,9 +405,9 @@ class PersonalProfile extends React.Component {
             <div className="container-fluid">
                 <TopNav loggedIn={this.state.loggedIn} user={this.state.user}/>
                 <div id="backColor">
-                {this.renderData()}
+                    {this.renderData()}
                     <div>&nbsp;</div>
-                {this.renderRoleData()}
+                    {this.renderRoleData()}
                 </div>
             </div>
         )
