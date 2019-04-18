@@ -189,7 +189,9 @@ class PersonalProfile extends React.Component {
         this.userService.logout()
             .then(() =>
                 this.setState({
-                    user: null,
+                    user: {
+                        username: ''
+                    },
                     username: '',
                     firstName: '',
                     lastName: '',
