@@ -7,6 +7,8 @@ import CustomerService from "../services/CustomerService";
 import "./PersonalProfile.css"
 import ArticleItem from "../components/ArticleItem";
 import FavoritedArticleItem from "../components/FavoritedArticleItem";
+import ArticleCard from "../components/LandingPage";
+import ProviderProfileItem from "../components/ProviderProfileItem";
 
 
 class PersonalProfile extends React.Component {
@@ -91,6 +93,16 @@ class PersonalProfile extends React.Component {
                 this.setState({
                     articles: articles
                 }))
+            .then(() => this.getProvider())
+    }
+
+    getProvider = () => {
+        const userId = this.state.user.id;
+        this.customerService.findProviderForCustomer(userId)
+            .then(provider =>
+            this.setState({
+                provider: provider
+            }))
     }
 
     getAuthoredArticles = () => {
@@ -132,6 +144,15 @@ class PersonalProfile extends React.Component {
          this.customerService
              .unfavorite(customerId, articleId)
              .then(() => this.getFavoritedArticles())
+    }
+
+    unsaveProvider = () => {
+        const customerId = this.state.user.id;
+        this.customerService
+            .unsaveProvider(customerId)
+            .then(() => this.setState({
+                provider: null
+            }))
     }
 
 
@@ -359,6 +380,17 @@ class PersonalProfile extends React.Component {
         }
     }
 
+    renderCustomerProviderData() {
+        if (this.state.provider) {
+            return <div>
+                <ProviderProfileItem
+                author={this.state.provider}
+                unsaveProvider={this.unsaveProvider}/>
+            </div>
+        }
+    }
+
+
     renderRoleData() {
         if (this.state.role == 'CUS') {
             var items;
@@ -448,6 +480,7 @@ class PersonalProfile extends React.Component {
                 <div id="backColor">
                     {this.renderData()}
                     <div>&nbsp;</div>
+                    {this.renderCustomerProviderData()}
                     {this.renderRoleData()}
                 </div>
             </div>

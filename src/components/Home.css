@@ -22,3 +22,14 @@ h6{
     color: white;
 }
 
+#provider{
+    text-align: center;
+    border: gainsboro;
+    border-style: solid;
+    background-color: lavender;
+}
+
+#trash{
+    color: red;
+}
+

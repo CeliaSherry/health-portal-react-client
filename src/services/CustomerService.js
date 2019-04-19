@@ -68,6 +68,31 @@ class CustomerService {
             method: 'DELETE'
         });
 
+    saveProvider = (customerId, providerId) =>
+        fetch(API_URL + "customer/" + customerId + "/provider/" + providerId, {
+            // credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST'
+        });
+
+    unsaveProvider = (customerId) =>
+        fetch(API_URL + "customer/" + customerId + "/provider", {
+            // credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'DELETE'
+        });
+
+    findProviderForCustomer = (customerId) =>
+        fetch(API_URL + "customer/" + customerId + "/provider")
+            .then(response => response.json())
+            .catch(error => {
+
+            });
+
     findFavoritedArticles = (customerId) =>
         fetch(API_URL + "customer/" + customerId + "/article")
             .then(response => response.json());
