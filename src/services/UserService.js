@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
 import React from "react";
 
-//const API_URL = 'http://localhost:8080/api/'
-const API_URL= 'https://cryptic-sea-99383.herokuapp.com/api/'
+const API_URL = 'http://localhost:8080/api/'
+//const API_URL= 'https://cryptic-sea-99383.herokuapp.com/api/'
 
 class UserService {
 

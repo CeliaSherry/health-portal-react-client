@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
 import React from "react";
 
-//const API_URL = 'http://localhost:8080/api/'
-const API_URL= 'https://cryptic-sea-99383.herokuapp.com/api/'
+const API_URL = 'http://localhost:8080/api/'
+//const API_URL= 'https://cryptic-sea-99383.herokuapp.com/api/'
 
 class CustomerService {
 
@@ -57,6 +57,15 @@ class CustomerService {
                 'Content-Type': 'application/json'
             },
             method: 'POST'
+        });
+
+    unfavorite = (customerId, articleId) =>
+        fetch(API_URL + "customer/" + customerId + "/article/" + articleId, {
+            // credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'DELETE'
         });
 
     findFavoritedArticles = (customerId) =>

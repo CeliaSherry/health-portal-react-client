@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import CustomerService from "../services/CustomerService";
 import "./PersonalProfile.css"
 import ArticleItem from "../components/ArticleItem";
+import FavoritedArticleItem from "../components/FavoritedArticleItem";
 
 
 class PersonalProfile extends React.Component {
@@ -124,6 +125,13 @@ class PersonalProfile extends React.Component {
             .then(() => this.setState({
                 loggedIn: true
             }))
+    }
+
+    unfavoriteArticle = (articleId) => {
+         const customerId = this.state.user.id;
+         this.customerService
+             .unfavorite(customerId, articleId)
+             .then(() => this.getFavoritedArticles())
     }
 
 
@@ -356,10 +364,25 @@ class PersonalProfile extends React.Component {
             var items;
             items = this.state.articles
                 .map(function (item, index) {
-                    return <ArticleItem key={index}
-                                        id={item.id}
-                                        title={item.title}/>
-                })
+                    return <div>
+                        <tr key={item.index}>
+                            <td>
+                                <button className="btn btn-success btn-sm pull-right"
+                                        type="button"
+                                        onClick={() => this.unfavoriteArticle(item.id)}>
+                                    Unfavorite
+                                </button>
+                            </td>
+                            <td>
+                                <Link to={`/article/${item.id}`}>
+                                    <i className="fa fa-file">&nbsp;</i>
+                                    {item.title}
+                                </Link>
+                            </td>
+                        </tr>
+                    </div>
+
+                }, this);
 
             return (
                 <div>
