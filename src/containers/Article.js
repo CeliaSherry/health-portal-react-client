@@ -64,6 +64,15 @@ class Article extends React.Component {
             .then(() => this.findArticleById())
     }
 
+    saveProvider = () => {
+        const customerId = this.state.user.id;
+        const authorId = this.state.author.id;
+        this.customerService
+            .saveProvider(customerId, authorId)
+            .then(() => this.findArticleById())
+            .then(() => alert('Provider Saved'))
+    }
+
     loggedInUser = () => {
         if (this.state.loggedIn == true) {
             this.userService.loggedInUser()
@@ -313,6 +322,12 @@ class Article extends React.Component {
                     <a onClick={() => this.favoriteArticle()}>
                         <i className="fa fa-thumbs-up fa-2x">&nbsp;</i>
                         Like
+                    </a>
+                    &nbsp;
+                    &nbsp;
+                    <a onClick={() => this.saveProvider()}>
+                        <i className="fa fa-save fa-2x">&nbsp;</i>
+                        Save Provider
                     </a>
                 </div>
             )
